@@ -20,7 +20,7 @@
         </ol>
     </li>
     <li>
-        <strong>Запуск контейнера:</strong> <br>
+        <strong>Запуск контейнера (в папке laradock):</strong> <br>
         docker-compose up -d nginx mysql
     </li>
     <li>
