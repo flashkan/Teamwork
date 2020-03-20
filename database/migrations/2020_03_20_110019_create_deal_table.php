@@ -20,7 +20,7 @@ class CreateDealTable extends Migration
             $table->dateTime('end_time');
             $table->decimal('current_rate', 15, 2);
             $table->bigInteger('current_buyer_id')->unsigned();
-            $table->boolean('closed');
+            $table->boolean('closed')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

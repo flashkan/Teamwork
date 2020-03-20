@@ -11,6 +11,21 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \Illuminate\Support\Facades\DB::table('product')->insert($this->getData());
+    }
+
+    public function getData()
+    {
+        $data = [];
+        $faker = \Faker\Factory::create('ru_RU');
+
+        for($i = 1; $i <= 10; $i++) {
+            $data[] = [
+                'name' => $faker->realText(rand(10, 15)),
+                'description' => $faker->realText(rand(20, 40)),
+                'owner_id' => $faker->numberBetween(1, 5),
+            ];
+        }
+        return $data;
     }
 }
