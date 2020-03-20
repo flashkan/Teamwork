@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(
+    [
+        'prefix' => 'product',
+        'as' => 'product.',
+    ], function () {
+    Route::get('/all', 'ProductController@all')->name('all');
+}
+);
