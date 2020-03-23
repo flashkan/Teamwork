@@ -27,6 +27,14 @@
         <strong>Генерация ключа для приложения laravel:</strong> <br>
         php artisan key:generate
     </li>
+    <li>
+        <strong>Доставляем зависимости:</strong> <br>
+        npm install
+    </li>
+    <li>
+        <strong>Разворачиваеи приложение для разработчика:</strong> <br>
+        npm run dev
+    </li>
 </ol>
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
