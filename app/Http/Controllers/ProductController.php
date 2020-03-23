@@ -11,5 +11,6 @@ class ProductController extends Controller
 {
     public function all()
     {
+        User::all();
     }
 }
