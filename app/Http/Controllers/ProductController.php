@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function index()
+    {
+        $productModel = new Product;
+        $myProducts = $productModel->userProducts();
+        
+        $params = [
+            'products' => $myProducts,
+        ];
+        return view('products.my_products', $params);
+    }
+    
     public function all()
     {
         User::all();
