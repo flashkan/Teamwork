@@ -27,3 +27,5 @@ Route::group(
     Route::get('/all', 'ProductController@all')->name('all');
 }
 );
+
+Route::get('/my-products', 'ProductController@index')->name('my-products');
