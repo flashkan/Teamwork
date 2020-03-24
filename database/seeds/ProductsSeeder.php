@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProductSeeder extends Seeder
+class ProductsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('product')->insert($this->getData());
+        \Illuminate\Support\Facades\DB::table('products')->insert($this->getData());
     }
 
     public function getData()

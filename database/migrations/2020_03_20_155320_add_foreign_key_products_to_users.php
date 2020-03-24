@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameProductTable extends Migration
+class AddForeignKeyProductsToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class RenameProductTable extends Migration
      */
     public function up()
     {
-        Schema::rename('product', 'products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign('owner_id')
+                ->on('users')
+                ->references('id');
+        });
     }
 
     /**
@@ -23,6 +27,8 @@ class RenameProductTable extends Migration
      */
     public function down()
     {
-        Schema::rename('products', 'product');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['owner_id']);
+        });
     }
 }

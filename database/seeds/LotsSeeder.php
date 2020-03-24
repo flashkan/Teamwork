@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DealSeeder extends Seeder
+class LotsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class DealSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('deal')->insert($this->getData());
+        \Illuminate\Support\Facades\DB::table('lots')->insert($this->getData());
     }
 
     public function getData()
