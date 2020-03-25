@@ -26,4 +26,13 @@ Route::group(
 }
 );
 
-
+Route::group(
+    [
+        'prefix' => 'lot',
+        'as' => 'lot.',
+    ], function () {
+    Route::get('/all', 'LotController@all')->name('all');
+    Route::get('/one/{lot}', 'LotController@one')->name('one');
+    Route::get('/my', 'LotController@my')->name('my');
+}
+);
