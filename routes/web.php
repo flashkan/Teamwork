@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -23,6 +26,9 @@ Route::group(
     Route::get('/all', 'ProductController@all')->name('all');
     Route::get('/one/{product}', 'ProductController@one')->name('one');
     Route::get('/my', 'ProductController@index')->name('my');
+    Route::match(['get', 'post'],'/add', 'ProductController@add')->name('add');
+    Route::match(['get', 'post'],'/update/{product}', 'ProductController@update')->name('update');
+    Route::match(['get', 'post'],'/delete/{product}', 'ProductController@delete')->name('delete');
 }
 );
 
