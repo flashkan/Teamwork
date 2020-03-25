@@ -17,6 +17,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('product.my') }}">{{ __('My Product') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('product.add') }}">{{ __('Add Product') }}</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
