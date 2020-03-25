@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(
     [
@@ -25,7 +21,9 @@ Route::group(
         'as' => 'product.',
     ], function () {
     Route::get('/all', 'ProductController@all')->name('all');
+    Route::get('/one/{product}', 'ProductController@one')->name('one');
+    Route::get('/my', 'ProductController@index')->name('my');
 }
 );
 
-Route::get('/my-products', 'ProductController@index')->name('my-products');
+

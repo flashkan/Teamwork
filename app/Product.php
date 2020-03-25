@@ -2,15 +2,19 @@
 
 namespace App;
 
-use Auth;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
     public function userProducts()
     {
-        $loggedUserId = Auth::id();
-        return parent::newQuery()->where('owner_id', '=', $loggedUserId)->get();
+        return self::query()->where('owner_id', '=', Auth::id())->get();
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id')->first();
     }
 }

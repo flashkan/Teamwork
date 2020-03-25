@@ -13,15 +13,17 @@ class ProductController extends Controller
     {
         $productModel = new Product;
         $myProducts = $productModel->userProducts();
-        
-        $params = [
-            'products' => $myProducts,
-        ];
-        return view('products.my_products', $params);
+
+        return view('products.my', ['products' => $myProducts]);
     }
-    
+
     public function all()
     {
-        User::all();
+        return view('products.all', ['products' => Product::all()]);
+    }
+
+    public function one(Product $product)
+    {
+        return view('products.one', ['product' => $product]);
     }
 }
