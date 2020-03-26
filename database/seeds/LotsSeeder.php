@@ -19,11 +19,12 @@ class LotsSeeder extends Seeder
         $data = [];
         $faker = \Faker\Factory::create('ru_RU');
 
-        for($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $data[] = [
                 'product_id' => $faker->numberBetween(1, 10),
                 'price' => $faker->randomFloat(2, 1000, 5000),
-                'end_time' => date('Y-m-d H:i:s', time() + rand(1, 60) * rand(1, 60) * rand(10, 50)),
+                'end_time' =>
+                    date('Y-m-d H:i:s', time() + 3600 * 3 + rand(1, 60) * rand(1, 60) * rand(10, 50)),
                 'current_rate' => $faker->randomFloat(2, 5000, 50000),
                 'current_buyer_id' => $faker->numberBetween(6, 10),
             ];

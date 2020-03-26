@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <product-all-component></product-all-component>  {{--компонент Vue--}}
     <div class="container-lg">
         <div class="row">
             @foreach ($products as $product)
