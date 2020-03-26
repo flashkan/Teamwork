@@ -26,6 +26,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('lot.my') }}">{{ __('My Lots') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('account.my') }}">{{ __('My Account') }}</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

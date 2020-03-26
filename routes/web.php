@@ -42,3 +42,14 @@ Route::group(
     Route::get('/my', 'LotController@my')->name('my');
 }
 );
+
+Route::group(
+    [
+        'prefix' => 'account',
+        'as' => 'account.',
+    ], function () {
+    Route::get('/my', 'AccountController@my')->name('my');
+    Route::post('/increase', 'AccountController@increase')->name('increase');
+    Route::post('/decrease', 'AccountController@decrease')->name('decrease');
+}
+);
