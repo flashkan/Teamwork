@@ -1932,10 +1932,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProductAllComponent.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ProductAllComponent.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LotTimerComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LotTimerComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1947,8 +1947,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  props: ['lot'],
+  data: function data() {
+    return {
+      date_end: this.lot.end_time,
+      days: '00',
+      hours: '00',
+      minutes: '00',
+      seconds: '00'
+    };
+  },
+  mounted: function mounted() {
+    this.timer();
+  },
+  methods: {
+    timer: function timer() {
+      var this_timer = this;
+      var set_interval_id = setInterval(function () {
+        var date = new Date(this_timer.date_end).getTime() - Date.now();
+        var tdays = Math.floor(date / (1000 * 60 * 60 * 24));
+        var thours = Math.floor(date % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+        var tminutes = Math.floor(date % (1000 * 60 * 60) / (1000 * 60));
+        var tseconds = Math.floor(date % (1000 * 60) / 1000);
+        this_timer.days = tdays < 10 ? "0".concat(tdays) : tdays;
+        this_timer.hours = thours < 10 ? "0".concat(thours) : thours;
+        this_timer.minutes = tminutes < 10 ? "0".concat(tminutes) : tminutes;
+        this_timer.seconds = tseconds < 10 ? "0".concat(tseconds) : tseconds;
+        if (date < 1000) clearInterval(set_interval_id);
+      }, 1000);
+    }
+  }
 });
 
 /***/ }),
@@ -37355,10 +37403,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProductAllComponent.vue?vue&type=template&id=42f52b50&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ProductAllComponent.vue?vue&type=template&id=42f52b50& ***!
-  \**********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LotTimerComponent.vue?vue&type=template&id=12bc918e&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LotTimerComponent.vue?vue&type=template&id=12bc918e& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -37370,9 +37418,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _vm._v("\n    Product All\n")
-  ])
+  return _c(
+    "div",
+    { staticClass: "bg-info rounded-lg d-flex justify-content-around p-3" },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center"
+        },
+        [
+          _c("p", { staticClass: "text-danger text-b m-0" }, [
+            _vm._v(_vm._s(_vm.days))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "m-0" }, [_vm._v("Дни")])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center"
+        },
+        [
+          _c("p", { staticClass: "text-danger text-b m-0" }, [
+            _vm._v(_vm._s(_vm.hours))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "m-0" }, [_vm._v("Часы")])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center"
+        },
+        [
+          _c("p", { staticClass: "text-danger text-b m-0" }, [
+            _vm._v(_vm._s(_vm.minutes))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "m-0" }, [_vm._v("Минуты")])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center"
+        },
+        [
+          _c("p", { staticClass: "text-danger text-b m-0" }, [
+            _vm._v(_vm._s(_vm.seconds))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "m-0" }, [_vm._v("Секунды")])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -49564,7 +49674,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('product-all-component', __webpack_require__(/*! ./components/ProductAllComponent.vue */ "./resources/js/components/ProductAllComponent.vue")["default"]);
+Vue.component('lot-timer-component', __webpack_require__(/*! ./components/LotTimerComponent.vue */ "./resources/js/components/LotTimerComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49691,17 +49801,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ProductAllComponent.vue":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/ProductAllComponent.vue ***!
-  \*********************************************************/
+/***/ "./resources/js/components/LotTimerComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/LotTimerComponent.vue ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ProductAllComponent_vue_vue_type_template_id_42f52b50___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductAllComponent.vue?vue&type=template&id=42f52b50& */ "./resources/js/components/ProductAllComponent.vue?vue&type=template&id=42f52b50&");
-/* harmony import */ var _ProductAllComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAllComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ProductAllComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _LotTimerComponent_vue_vue_type_template_id_12bc918e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LotTimerComponent.vue?vue&type=template&id=12bc918e& */ "./resources/js/components/LotTimerComponent.vue?vue&type=template&id=12bc918e&");
+/* harmony import */ var _LotTimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LotTimerComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LotTimerComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -49711,9 +49821,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ProductAllComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ProductAllComponent_vue_vue_type_template_id_42f52b50___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ProductAllComponent_vue_vue_type_template_id_42f52b50___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _LotTimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LotTimerComponent_vue_vue_type_template_id_12bc918e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LotTimerComponent_vue_vue_type_template_id_12bc918e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -49723,38 +49833,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/ProductAllComponent.vue"
+component.options.__file = "resources/js/components/LotTimerComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/ProductAllComponent.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/ProductAllComponent.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/components/LotTimerComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/LotTimerComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAllComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAllComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProductAllComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAllComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LotTimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LotTimerComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LotTimerComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LotTimerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/ProductAllComponent.vue?vue&type=template&id=42f52b50&":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/ProductAllComponent.vue?vue&type=template&id=42f52b50& ***!
-  \****************************************************************************************/
+/***/ "./resources/js/components/LotTimerComponent.vue?vue&type=template&id=12bc918e&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/LotTimerComponent.vue?vue&type=template&id=12bc918e& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAllComponent_vue_vue_type_template_id_42f52b50___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ProductAllComponent.vue?vue&type=template&id=42f52b50& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProductAllComponent.vue?vue&type=template&id=42f52b50&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAllComponent_vue_vue_type_template_id_42f52b50___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotTimerComponent_vue_vue_type_template_id_12bc918e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LotTimerComponent.vue?vue&type=template&id=12bc918e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LotTimerComponent.vue?vue&type=template&id=12bc918e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotTimerComponent_vue_vue_type_template_id_12bc918e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductAllComponent_vue_vue_type_template_id_42f52b50___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotTimerComponent_vue_vue_type_template_id_12bc918e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
