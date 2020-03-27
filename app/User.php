@@ -36,4 +36,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userProducts()
+    {
+        return $this->hasMany('App\Product');
+    }
+
+    public function userLots()
+    {
+        $userProducts = $this->hasMany('App\Product');
+
+        $userLots = collect();
+        foreach ($userProducts as $product) {
+            $lot = $product->findOwnLot;
+            if (isset($lot)) {
+                $userLots->push($lot);
+            }
+        }
+
+        return $userLots;
+    }
 }
