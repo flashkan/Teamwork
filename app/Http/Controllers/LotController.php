@@ -23,10 +23,8 @@ class LotController extends Controller
     public function my()
     {
         $myLots = (new Lot)->userLots();
-
         return view('lots.my', ['lots' => $myLots]);
     }
-
 
 
     public function add(Request $request)
@@ -45,7 +43,6 @@ class LotController extends Controller
 
     public function update(Request $request, Lot $lot)
     {
-        dump(old('price'));
         if ($request->isMethod('post')) {
             $this->validate($request, Lot::rules());
             $lot->fill($request->all());
