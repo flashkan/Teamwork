@@ -40,6 +40,9 @@ Route::group(
     Route::get('/all', 'LotController@all')->name('all');
     Route::get('/one/{lot}', 'LotController@one')->name('one');
     Route::get('/my', 'LotController@my')->name('my');
+    Route::match(['get', 'post'],'/add', 'LotController@add')->name('add');
+    Route::match(['get', 'post'],'/update/{lot}', 'LotController@update')->name('update');
+    Route::match(['get', 'post'],'/delete/{lot}', 'LotController@delete')->name('delete');
 }
 );
 

@@ -9,5 +9,7 @@
         <div class="col-5 p-0">
             <lot-timer-component :lot="{{$lot}}"></lot-timer-component>
         </div>
+        <a class="btn btn-success" href="{{ route('lot.update', $lot) }}">Update</a>
+        <a class="btn btn-danger" href="{{ route('lot.delete', $lot) }}">Delete</a>
     </div>
 @endsection
