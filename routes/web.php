@@ -25,7 +25,7 @@ Route::group(
     ], function () {
     Route::get('/all', 'ProductController@all')->name('all');
     Route::get('/one/{product}', 'ProductController@one')->name('one');
-    Route::get('/my', 'ProductController@index')->name('my');
+    Route::get('/my', 'ProductController@my')->name('my');
     Route::match(['get', 'post'],'/add', 'ProductController@add')->name('add');
     Route::match(['get', 'post'],'/update/{product}', 'ProductController@update')->name('update');
     Route::match(['get', 'post'],'/delete/{product}', 'ProductController@delete')->name('delete');

@@ -15,9 +15,4 @@ class Account extends Model
     protected $fillable = [
         'user_id', 'balance',
     ];
-    
-    public function getAuthedUserAccount()
-    {
-        return self::query()->where('user_id', '=', Auth::id())->first();
-    }
 }

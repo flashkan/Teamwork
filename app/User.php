@@ -37,23 +37,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function userProducts()
+    public function products()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany(Product::class, 'owner_id')->get();
     }
 
-    public function userLots()
+    public function seller()
     {
-        $userProducts = $this->hasMany('App\Product');
+        return $this->hasMany(Lot::class, 'seller_id')->get();
+    }
 
-        $userLots = collect();
-        foreach ($userProducts as $product) {
-            $lot = $product->findOwnLot;
-            if (isset($lot)) {
-                $userLots->push($lot);
-            }
-        }
+    public function buyer()
+    {
+        return $this->hasMany(Lot::class, 'current_buyer_id')->get();
+    }
 
-        return $userLots;
+    public function account()
+    {
+        return $this->hasOne(Account::class)->first();
     }
 }
