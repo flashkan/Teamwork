@@ -10,9 +10,12 @@ class Lot extends Model
     public static function rules()
     {
         $tableNameProduct = (new Product())->getTable();
+        $tableNameUser = (new User())->getTable();
         return [
             'product_id' => "required|exists:{$tableNameProduct},id",
-            'price' => 'required|numeric',
+            'seller_id' => "required|exists:{$tableNameUser},id",
+            'start_price' => 'required|numeric',
+            'buyback_price' => 'numeric|nullable',
             'end_time' => "required|date|after:now",
         ];
     }
@@ -23,25 +26,21 @@ class Lot extends Model
      * @var array
      */
     protected $fillable = [
-        'product_id', 'price', 'end_time',
+        'product_id', 'seller_id', 'start_price', 'buyback_price', 'end_time',
     ];
 
-    public function userLots()
+    public function product()
     {
-        $userProducts = (new Product)->userProducts();
-        $userLots = [];
-        foreach ($userProducts as $product) {
-            $lot = $product->findOwnLot;
-            if (isset($lot)) {
-                $userLots[] = $lot;
-            }
-        }
-
-        return $userLots;
+        return $this->belongsTo(Product::class)->first();
     }
 
-    public function parentProduct()
+    public function seller()
     {
-        return $this->belongsTo(Product::class, 'product_id')->first();
+        return $this->belongsTo(User::class)->first();
+    }
+
+    public function currentBuyer()
+    {
+        return $this->belongsTo(User::class)->first();
     }
 }

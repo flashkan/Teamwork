@@ -4,7 +4,6 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
@@ -27,17 +26,12 @@ class Product extends Model
         'name', 'description', 'owner_id',
     ];
 
-    public function userProducts()
-    {
-        return self::query()->where('owner_id', '=', Auth::id())->get();
-    }
-
     public function owner()
     {
-        return $this->belongsTo(User::class, 'owner_id')->first();
+        return $this->belongsTo(User::class)->first();
     }
 
-    public function findOwnLot() {
-        return $this->hasOne('App\Lot');
+    public function ownerLots() {
+        return $this->hasMany(Lot::class)->get();
     }
 }

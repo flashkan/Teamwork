@@ -16,7 +16,9 @@ class CreateLotsTable extends Migration
         Schema::create('lots', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
-            $table->decimal('price', 15, 2);
+            $table->bigInteger('seller_id')->unsigned();
+            $table->decimal('start_price', 15, 2);
+            $table->decimal('buyback_price', 15, 2)->default(null)->nullable();
             $table->dateTime('end_time');
             $table->decimal('current_rate', 15, 2)->default(0);
             $table->bigInteger('current_buyer_id')->unsigned()->default(null)->nullable();

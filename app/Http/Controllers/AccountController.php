@@ -11,14 +11,14 @@ class AccountController extends Controller
     public function my()
     {
         if (Auth::check()) {
-            $userAccount = (new Account)->getAuthedUserAccount();
+            $userAccount = Auth::user()->account();
             return view('accounts.my', ['account' => $userAccount]);
         }
     }
 
     public function increase(Request $request)
     {
-        $userAccount = (new Account)->getAuthedUserAccount();
+        $userAccount = Auth::user()->account();
         $userAccount->balance += $request->increase_balance;
         $saved = $userAccount->save();
 
@@ -31,7 +31,7 @@ class AccountController extends Controller
 
     public function decrease(Request $request)
     {
-        $userAccount = (new Account)->getAuthedUserAccount();
+        $userAccount = Auth::user()->account();
         $userAccount->balance -= $request->decrease_balance;
         $saved = $userAccount->save();
 

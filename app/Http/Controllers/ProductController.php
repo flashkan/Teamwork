@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Lot;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $productModel = new Product;
-        $myProducts = $productModel->userProducts();
-
-        return view('products.my', ['products' => $myProducts]);
-    }
-
     public function all()
     {
         return view('products.all', ['products' => Product::all()]);
+    }
+
+    public function my()
+    {
+        return view('products.my', ['products' => Auth::user()->products()]);
     }
 
     public function one(Product $product)
