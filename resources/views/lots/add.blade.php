@@ -17,6 +17,9 @@
 
                     @endforelse
                 </select>
+                @error('product_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="lot_start_price">Start price:</label>
