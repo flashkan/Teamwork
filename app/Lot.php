@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Rules\OneOpenLot;
 use Illuminate\Database\Eloquent\Model;
 use App\Product;
 
@@ -12,7 +13,7 @@ class Lot extends Model
         $tableNameProduct = (new Product())->getTable();
         $tableNameUser = (new User())->getTable();
         return [
-            'product_id' => "required|exists:{$tableNameProduct},id",
+            'product_id' => ["required", "exists:{$tableNameProduct},id", new OneOpenLot()],
             'seller_id' => "required|exists:{$tableNameUser},id",
             'start_price' => 'required|numeric',
             'buyback_price' => 'numeric|nullable',
