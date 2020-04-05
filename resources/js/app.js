@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('lot-timer-component', require('./components/LotTimerComponent.vue').default);
+Vue.component('ajax-template-component', require('./components/AjaxTemplateComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
