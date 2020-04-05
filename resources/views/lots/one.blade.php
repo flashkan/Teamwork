@@ -15,4 +15,37 @@
         <a class="btn btn-success" href="{{ route('lot.update', $lot) }}">Update</a>
         <a class="btn btn-danger" href="{{ route('lot.delete', $lot) }}">Delete</a>
     </div>
+
+    <h2>Bids</h2>
+    <div class="containter w-25 p-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">User ID</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Created at</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($bids as $bid)
+                    <tr>
+                    <td>{{ $bid->user_id }}</td>
+                    <td>{{ $bid->amount }}</td>
+                    <td>{{ $bid->created_at }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Make new bid</h2>
+    <form method="post" action="{{ action('BidController@add') }}">
+        @csrf
+        <div class="form-group">
+            <label for="amount">Bid amount:</label>
+            <input name="amount" type="number" class="form-control" id="amount" placeholder="Enter number" style="width:200px">
+            <input type="hidden" value="{{$lot->id}}" name="lot_id">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
 @endsection

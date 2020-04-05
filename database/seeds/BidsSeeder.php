@@ -24,17 +24,20 @@ class BidsSeeder extends Seeder
 
         for($i = 1; $i <= $numOfLots * 5; $i++) {
             $userId = $faker->numberBetween(1, $numOfUsers);
-            $userLots = User::find($userId)->userLots();
+            $userLots = User::find($userId)->seller();
 
             do {
                 $lotId = $faker->numberBetween(1, $numOfLots);
-            } while (!$userLots->whereStrict('id', $lotId));
+            } while ($userLots->containsStrict('id', $lotId));
 
             $amount = $faker->randomFloat(2, 0, 100);
+            $filteredData = $data->filter(function ($value, $key) use ($lotId) {
+                return $value['lot_id'] === $lotId;
+            });
 
             do {
                 $createdAt = $faker->dateTimeBetween($startDate = '-5 days', $endDate = '-1 hour', $timezone = 'MSK');
-            } while (!$this->checkAmountAndTime($data, $amount, $lotId, $createdAt));
+            } while (!$this->checkAmountAndTime($filteredData, $amount, $createdAt));
 
             $data->push([
                 'user_id' => $userId,
@@ -46,10 +49,11 @@ class BidsSeeder extends Seeder
         return $data->toArray();
     }
 
-    public function checkAmountAndTime($data, $amount, $lotId, $createdAt)
+    public function checkAmountAndTime($data, $amount, $createdAt)
     {
         foreach ($data as $row) {
-            if ($row['lot_id'] === $lotId && $row['amount'] > $amount && $row['created_at'] < $createdAt) {
+            if (($row['amount'] > $amount && $row['created_at'] < $createdAt) || 
+                ($row['amount'] < $amount && $row['created_at'] > $createdAt)) {
                 return false;
             }
         }
