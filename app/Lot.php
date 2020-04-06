@@ -44,4 +44,9 @@ class Lot extends Model
     {
         return $this->belongsTo(User::class)->first();
     }
+
+    public function bids()
+    {
+        return $this->hasMany(Bid::class, 'lot_id')->get();
+    }
 }

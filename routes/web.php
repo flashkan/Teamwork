@@ -59,3 +59,12 @@ Route::group(
     Route::post('/decrease', 'AccountController@decrease')->name('decrease');
 }
 );
+
+Route::group(
+    [
+        'prefix' => 'bid',
+        'as' => 'bid.',
+    ], function () {
+    Route::post('/add', 'BidController@add')->name('add');
+}
+);
