@@ -14,6 +14,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+// Тестовый роут для ajax зпроса
+Route::post('/', 'AjaxController@index')->name('ajax');
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
