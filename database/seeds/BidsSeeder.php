@@ -12,10 +12,19 @@ class BidsSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('bids')->insert($this->getData());
+        $bidsData = $this->getBidsData();
+        \Illuminate\Support\Facades\DB::table('bids')->insert($bidsData);
+
+        $lotsData = $this->getLotsData($bidsData);
+        $lotsData->each(function ($item, $key) {
+            \Illuminate\Support\Facades\DB::table('lots')->where('id', '=', $item['id'])->update([
+                'current_rate' => $item['current_rate'],
+                'current_buyer_id' => $item['current_buyer_id']
+            ]);
+        });
     }
 
-    public function getData()
+    public function getBidsData()
     {
         $data = collect();
         $faker = \Faker\Factory::create('ru_RU');
@@ -30,7 +39,8 @@ class BidsSeeder extends Seeder
                 $lotId = $faker->numberBetween(1, $numOfLots);
             } while ($userLots->containsStrict('id', $lotId));
 
-            $amount = $faker->randomFloat(2, 0, 100);
+            $currentLot = App\Lot::find($lotId);
+            $amount = $faker->randomFloat(2, $currentLot['start_price'], $currentLot['start_price'] + 100);
             $filteredData = $data->filter(function ($value, $key) use ($lotId) {
                 return $value['lot_id'] === $lotId;
             });
@@ -58,5 +68,27 @@ class BidsSeeder extends Seeder
             }
         }
         return true;
+    }
+
+    public function getLotsData($bidsData)
+    {
+        $data = collect();
+        $faker = \Faker\Factory::create('ru_RU');
+        $numOfLots = App\Lot::count();
+
+        for($i = 1; $i <= $numOfLots; $i++) {
+            $filteredBids = collect($bidsData)->filter(function ($value, $key) use ($i) {
+                return $value['lot_id'] === $i;
+            });
+            $currentRate = $filteredBids->isEmpty() ? 0 : $filteredBids->max('amount');
+            $currentBuyerId = $filteredBids->sortByDesc('amount')->first()['user_id'];
+
+            $data->push([
+                'id' => $i,
+                'current_rate' => $currentRate,
+                'current_buyer_id' => $currentBuyerId,
+            ]);
+        }
+        return $data;
     }
 }
