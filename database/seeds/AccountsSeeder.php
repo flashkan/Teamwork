@@ -22,7 +22,7 @@ class AccountsSeeder extends Seeder
 
         for($i = 1; $i <= $numOfUsers; $i++) {
             $data[] = [
-                'user_id' => $faker->unique()->numberBetween(1, $numOfUsers),
+                'user_id' => $i,
                 'balance' => $faker->randomFloat(2, -100, 100),
             ];
         }
