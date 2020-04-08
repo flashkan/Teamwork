@@ -14,12 +14,15 @@ class BidController extends Controller
             ->orderBy('amount', 'desc')
             ->limit(1)
             ->first();
-        
-        if ($highestBid->amount > $request->input('amount')) {
-            return redirect()
-                ->back()
-                ->with('success', 'Bid to low');
+
+        if (isset($highestBid)) {
+            if ($highestBid->amount > $request->input('amount')) {
+                return redirect()
+                    ->back()
+                    ->with('success', 'Bid to low');
+            }
         }
+
 
         $newBid = new Bid();
         $request->merge(['user_id' => Auth::id()]);
