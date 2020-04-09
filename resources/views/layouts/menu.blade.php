@@ -12,26 +12,28 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('product.all') }}">{{ __('All Product') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('product.my') }}">{{ __('My Product') }}</a>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('product.add') }}">{{ __('Add Product') }}</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('lot.all') }}">{{ __('All Lots') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('lot.my') }}">{{ __('My Lots') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('lot.add') }}">{{ __('Add Lots') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('account.my') }}">{{ __('My Account') }}</a>
-                </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('lot.my') }}">{{ __('My Lots') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('lot.add') }}">{{ __('Add Lots') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('product.all') }}">{{ __('All Product') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('product.my') }}">{{ __('My Product') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('product.add') }}">{{ __('Add Product') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('account.my') }}">{{ __('My Account') }}</a>
+                    </li>
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
