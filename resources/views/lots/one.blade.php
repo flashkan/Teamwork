@@ -13,7 +13,7 @@
             <lot-timer-component :lot="{{$lot}}"></lot-timer-component>
         </div>
         @auth
-            @if($lot->seller_id === \Illuminate\Support\Facades\Auth::id())
+            @if((int) $lot->seller_id === (int) \Illuminate\Support\Facades\Auth::id())
                 <a class="btn btn-success" href="{{ route('lot.update', $lot) }}">Update</a>
                 <a class="btn btn-danger" href="{{ route('lot.delete', $lot) }}">Delete</a>
             @endif
@@ -42,17 +42,19 @@
         </div>
 
         @auth
-            <h2>Make new bid</h2>
-            <form method="post" action="{{ action('BidController@add') }}">
-                @csrf
-                <div class="form-group">
-                    <label for="amount">Bid amount:</label>
-                    <input name="amount" type="number" class="form-control" id="amount" placeholder="Enter number"
-                           style="width:200px">
-                    <input type="hidden" value="{{$lot->id}}" name="lot_id">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+            @if((int) $lot->seller_id !== (int) \Illuminate\Support\Facades\Auth::id())
+                <h2>Make new bid</h2>
+                <form method="post" action="{{ action('BidController@add') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="amount">Bid amount:</label>
+                        <input name="amount" type="number" class="form-control" id="amount" placeholder="Enter number"
+                               style="width:200px">
+                        <input type="hidden" value="{{$lot->id}}" name="lot_id">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            @endif
         @endauth
     </div>
 @endsection
