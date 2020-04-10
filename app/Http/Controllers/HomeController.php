@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Test;
+use Illuminate\Support\Facades\DB;
+
 class HomeController extends Controller
 {
     /**

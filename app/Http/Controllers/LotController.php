@@ -11,7 +11,8 @@ class LotController extends Controller
 {
     public function all()
     {
-        return view('lots.all', ['lots' => Lot::all()]);
+        $openLots = Lot::query()->where('closed', 0)->paginate(9);
+        return view('lots.all', ['lots' => $openLots]);
     }
 
     public function my()

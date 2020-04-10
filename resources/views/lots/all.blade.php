@@ -19,5 +19,6 @@
                 </div>
             @endforeach
         </div>
+        {{ $lots->links() }}
     </div>
 @endsection
