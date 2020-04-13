@@ -26,6 +26,7 @@ class OneOpenLot implements Rule
      */
     public function passes($attribute, $value)
     {
+        if (preg_match("/update/", request()->getRequestUri())) return true; // если запрос из update, то true
         $lots = Lot::query()
             ->whereProductIdAndClosed($value, 0)
             ->get()

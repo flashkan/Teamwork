@@ -23,10 +23,9 @@
                     <p class="m-0">Секунды</p>
                 </div>
             </div>
+            <a class="btn btn-primary col-12" :href="url">More</a>
         </div>
-        <div v-else class="alert alert-primary" role="alert">
-            Этот лот закрыт
-        </div>
+        <div v-else class="alert alert-primary" role="alert">Этот лот закрыт</div>
     </div>
 </template>
 
@@ -47,10 +46,7 @@
 
         mounted() {
             if (this.date_end > Date.now()) this.timer();
-            else {
-                this.open_lot = false;
-                window.location = this.url;
-            }
+            else this.open_lot = false;
         },
 
         methods: {
@@ -71,7 +67,6 @@
 
                     if (date < 1000) {
                         this_timer.open_lot = false;
-                        window.location = this_timer.url;
                         clearInterval(set_interval_id);
                     }
                 }, 1000);
