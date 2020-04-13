@@ -22,7 +22,7 @@ class LotsSeeder extends Seeder
         $products = App\Product::all();
         $numOfProducts = $products->count();
 
-        for ($i = 1; $i <= $numOfProducts * 2; $i++) {
+        for ($i = 1; $i <= $numOfProducts * 0.5; $i++) {
             do {
                 $sellerId = $faker->numberBetween(1, $numOfUsers);
             
@@ -32,26 +32,14 @@ class LotsSeeder extends Seeder
             } while ($filteredProducts->isEmpty());
 
             $productId = $filteredProducts->random()['id'];
-
-            $filteredData = $data->filter(function ($value, $key) use ($sellerId) {
-                return $value['seller_id'] === $sellerId;
-            });
-            
-            if (!$filteredData->containsStrict('closed', 0)) {
-                $isClosed = 0;
-                $endTime = $faker->dateTimeBetween($startDate = '3 hour', $endDate = '5 days', $timezone = 'MSK');
-            } else {
-                $isClosed = 1;
-                $endTime = $faker->dateTimeBetween($startDate = '-1 hour', $endDate = 'now', $timezone = 'MSK');
-            }
             
             $data->push([
                 'product_id' => $productId,
                 'seller_id' => $sellerId,
                 'start_price' => $faker->randomFloat(2, 1000, 5000),
                 'buyback_price' => $faker->randomFloat(2, 50000, 100000),
-                'end_time' => $endTime,
-                'closed' => $isClosed,
+                'end_time' => $faker->dateTimeBetween($startDate = '3 hour', $endDate = '5 days', $timezone = 'MSK'),
+                'closed' => 0,
             ]);
         }
         return $data->toArray();

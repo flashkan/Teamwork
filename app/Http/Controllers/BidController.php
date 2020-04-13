@@ -34,9 +34,21 @@ class BidController extends Controller
         $newBid = new Bid();
         $request->merge(['user_id' => Auth::id()]);
         $newBid->fill($request->all());
-        $newBid->save();
-        return redirect()
-            ->back()
-            ->with('success', 'Bid successfully created');
+
+        $bidsLot = Lot::find($lot_id);
+        $bidsLot->current_rate = $request->input('amount');
+        $bidsLot->current_buyer_id = Auth::id();
+
+        $updated = $bidsLot->update();
+        $saved = $newBid->save();
+        if ($updated && $saved) {
+            return redirect()
+                ->back()
+                ->with('success', 'Bid successfully created');
+        } else {
+            return redirect()
+                ->back()
+                ->with('success', 'Something went wrong');
+        }
     }
 }
