@@ -45,14 +45,14 @@ Route::group(
         'as' => 'lot.',
     ], function () {
     Route::get('/all', 'LotController@all')->name('all');
-    Route::get('/one/{lot}', 'LotController@one')->name('one');
+    Route::get('/one/{lot}', 'LotController@one')->name('one')->middleware('closed.lot');
     Route::get('/my', 'LotController@my')->name('my')->middleware('auth');
     Route::match(['get', 'post'], '/add', 'LotController@add')->name('add')
         ->middleware('auth');
     Route::match(['get', 'post'], '/update/{lot}', 'LotController@update')->name('update')
-        ->middleware('auth', 'user.owner');
+        ->middleware('auth', 'user.owner', 'closed.lot');
     Route::match(['get', 'post'], '/delete/{lot}', 'LotController@delete')->name('delete')
-        ->middleware('auth', 'user.owner');
+        ->middleware('auth', 'user.owner', 'closed.lot');
 }
 );
 
