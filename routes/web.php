@@ -77,3 +77,16 @@ Route::group(
     Route::post('/add', 'BidController@add')->name('add');
 }
 );
+
+Route::group(
+    [
+        'prefix' => 'admin',
+        'namespace' => 'Admin',
+        'as' => 'admin.',
+        'middleware' => ['auth', 'is.admin'],
+    ], function () {
+    Route::get('/users', 'AdminController@users')->name('users');
+    Route::get('/products', 'AdminController@products')->name('products');
+    Route::get('/lots', 'AdminController@lots')->name('lots');
+}
+);
