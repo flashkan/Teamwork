@@ -31,7 +31,7 @@
                         <a class="nav-link" href="{{ route('product.add') }}">{{ __('Add Product') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('account.my') }}">{{ __('My Account') }}</a>
+                        <a class="nav-link" href="{{ route('balance.my') }}">{{ __('My Balance') }}</a>
                     </li>
                 @endauth
             </ul>

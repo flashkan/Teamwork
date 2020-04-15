@@ -52,8 +52,8 @@ class User extends Authenticatable
         return $this->hasMany(Lot::class, 'current_buyer_id')->get();
     }
 
-    public function account()
+    public function balance()
     {
-        return $this->hasOne(Account::class)->first();
+        return $this->hasOne(Balance::class)->first();
     }
 }

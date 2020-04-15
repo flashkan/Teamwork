@@ -3,10 +3,10 @@
 @section('content')
     <div class="container-lg">
         <h1>Your Account</h1>
-        <div class="accountWrapper">
-            <h5><strong>Balance:</strong> {{ $account->balance }}</h5>
+        <div class="balanceWrapper">
+            <h5><strong>Balance:</strong> {{ $balance->main_balance }}</h5>
             
-            <form method="post" action="{{ action('AccountController@increase') }}">
+            <form method="post" action="{{ action('BalanceController@increase') }}">
             @csrf
                 <div class="form-group">
                     <label for="increase_balance">Mine bitcoins:</label>
@@ -15,7 +15,7 @@
                 </div>
             </form>
 
-            <form method="post" action="{{ action('AccountController@decrease') }}">
+            <form method="post" action="{{ action('BalanceController@decrease') }}">
             @csrf
                 <div class="form-group">
                     <label for="decrease_balance">Give to charity:</label>

@@ -13,7 +13,7 @@ class AddForeignKeyAccountsToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('accounts', function (Blueprint $table) {
+        Schema::table('balances', function (Blueprint $table) {
             $table->foreign('user_id')
                 ->on('users')
                 ->references('id');
@@ -27,7 +27,7 @@ class AddForeignKeyAccountsToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('accounts', function (Blueprint $table) {
+        Schema::table('balances', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
     }
