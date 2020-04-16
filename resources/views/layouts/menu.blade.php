@@ -19,10 +19,10 @@
                         <a class="nav-link" href="{{ route('lot.my') }}">{{ __('My Lots') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('lot.add') }}">{{ __('Add Lots') }}</a>
+                        <a class="nav-link" href="{{ route('lot.add') }}">{{ __('Add Lot') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('product.all') }}">{{ __('All Product') }}</a>
+                        <a class="nav-link" href="{{ route('product.all') }}">{{ __('All Products') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('product.my') }}">{{ __('My Product') }}</a>

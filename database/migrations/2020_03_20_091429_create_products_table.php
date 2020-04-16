@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->text('name');
             $table->text('description');
             $table->bigInteger('owner_id')->unsigned();
+            $table->bigInteger('bought_by')->unsigned()->default(null)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
