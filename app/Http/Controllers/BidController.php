@@ -12,7 +12,9 @@ class BidController extends Controller
     public function add(Request $request)
     {
         $lot_id = $request->input('lot_id');
-        if ((int) Lot::query()->whereId($lot_id)->first()->seller_id === (int) Auth::id()) {
+        $bidsLot = Lot::find($lot_id);
+
+        if ((int) $bidsLot->seller_id === (int) Auth::id()) {
             return redirect()
                 ->back()
                 ->with('success', 'Seller can\'t bid');
@@ -31,11 +33,16 @@ class BidController extends Controller
             }
         }
 
+        if (empty($bidsLot->current_buyer_id) && $bidsLot->start_price > $request->input('amount')) {
+            return redirect()
+                    ->back()
+                    ->with('success', 'Bid can\'t be lower than starting price');
+        }
+
         $newBid = new Bid();
         $request->merge(['user_id' => Auth::id()]);
         $newBid->fill($request->all());
 
-        $bidsLot = Lot::find($lot_id);
         $bidsLot->current_rate = $request->input('amount');
         $bidsLot->current_buyer_id = Auth::id();
 
