@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, 'owner_id')->get();
     }
 
+    public function unsoldProducts()
+    {
+        return $this->products()->whereNull('bought_by');
+    }
+
     public function seller()
     {
         return $this->hasMany(Lot::class, 'seller_id')->get();

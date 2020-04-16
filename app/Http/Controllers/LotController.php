@@ -37,7 +37,7 @@ class LotController extends Controller
                 ->route('lot.one', ['lot' => $lot])
                 ->with('success', 'Lot successfully created');
         }
-        return view('lots.add', ['lot' => $lot, 'products' => Auth::user()->products()]);
+        return view('lots.add', ['lot' => $lot, 'products' => Auth::user()->unsoldProducts()]);
     }
 
     public function update(Request $request, Lot $lot)

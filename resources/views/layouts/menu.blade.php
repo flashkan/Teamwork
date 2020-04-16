@@ -25,7 +25,7 @@
                         <a class="nav-link" href="{{ route('product.all') }}">{{ __('All Products') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('product.my') }}">{{ __('My Product') }}</a>
+                        <a class="nav-link" href="{{ route('product.my') }}">{{ __('My Products') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('product.add') }}">{{ __('Add Product') }}</a>
