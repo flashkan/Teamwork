@@ -19,7 +19,7 @@
                         <a class="nav-link" href="{{ route('lot.my') }}">{{ __('My Lots') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('lot.add') }}">{{ __('Add Lots') }}</a>
+                        <a class="nav-link" href="{{ route('lot.add') }}">{{ __('Add Lot') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('product.my') }}">{{ __('My Product') }}</a>
@@ -28,7 +28,7 @@
                         <a class="nav-link" href="{{ route('product.add') }}">{{ __('Add Product') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('account.my') }}">{{ __('My Account') }}</a>
+                        <a class="nav-link" href="{{ route('balance.my') }}">{{ __('My Balance') }}</a>
                     </li>
                 @endauth
             </ul>

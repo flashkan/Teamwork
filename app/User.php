@@ -68,6 +68,11 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, 'owner_id')->get();
     }
 
+    public function unsoldProducts()
+    {
+        return $this->products()->whereNull('bought_by');
+    }
+
     public function seller()
     {
         return $this->hasMany(Lot::class, 'seller_id')->get();
@@ -78,9 +83,9 @@ class User extends Authenticatable
         return $this->hasMany(Lot::class, 'current_buyer_id')->get();
     }
 
-    public function account()
+    public function balance()
     {
-        return $this->hasOne(Account::class)->first();
+        return $this->hasOne(Balance::class)->first();
     }
 
     public static function isAdmin()

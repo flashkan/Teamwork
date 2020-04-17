@@ -17,6 +17,10 @@ class AddForeignKeyProductsToUsers extends Migration
             $table->foreign('owner_id')
                 ->on('users')
                 ->references('id');
+            
+            $table->foreign('bought_by')
+                ->on('users')
+                ->references('id');
         });
     }
 
@@ -29,6 +33,7 @@ class AddForeignKeyProductsToUsers extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->dropForeign(['owner_id']);
+            $table->dropForeign(['bought_by']);
         });
     }
 }

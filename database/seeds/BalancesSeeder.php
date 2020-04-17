@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AccountsSeeder extends Seeder
+class BalancesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class AccountsSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('accounts')->insert($this->getData());
+        \Illuminate\Support\Facades\DB::table('balances')->insert($this->getData());
     }
 
     public function getData()
@@ -23,7 +23,7 @@ class AccountsSeeder extends Seeder
         for($i = 1; $i <= $numOfUsers; $i++) {
             $data[] = [
                 'user_id' => $i,
-                'balance' => $faker->randomFloat(2, -100, 100),
+                'main_balance' => $faker->randomFloat(2, -100, 100),
             ];
         }
         return $data;

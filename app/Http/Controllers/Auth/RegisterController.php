@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Balance;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -72,10 +73,10 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-
-            $account = Account::create([
+          
+            $account = Balance::create([
                 'user_id' => $user->id,
-                'balance' => 50,
+                'main_balance' => 50,
             ]);
 
             return $user;
