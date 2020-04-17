@@ -22,7 +22,7 @@ class LotController extends Controller
 
     public function one(Lot $lot)
     {
-        return view('lots.one', ['lot' => $lot, 'bids' => $lot->bids()->sortBy('created_at')]);
+        return view('lots.one', ['lot' => $lot, 'bids' => $lot->bids()]);
     }
 
     public function add(Request $request)
