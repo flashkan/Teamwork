@@ -2,7 +2,8 @@
 
 @section('admin.content')
     <div class="container-lg">
-        <div class="row">
+        <a class="btn btn-success" href="{{ route('admin.lot.add') }}">Create new</a>
+        <div class="row m-1">
             @foreach ($lots as $lot)
                 <div class="card col-4 p-1" style="width: 18rem;">
                     <img src="http://placehold.it/150x100" class="card-img-top" alt="...">
@@ -14,7 +15,8 @@
                         <p class="card-text"><strong>Дата окончание:</strong> {{ $lot->end_time }}</p>
                         <p class="card-text"><strong>Принадлежит продукту:</strong> {{ $lot->product()->name }}</p>
                     </div>
-                    <lots-timer-component :lot="{{$lot}}" :url="'{{ route('lot.one', $lot) }}'"></lots-timer-component>
+                    <lots-timer-for-admin-component :lot="{{$lot}}"></lots-timer-for-admin-component>
+                    <a class="btn btn-primary" href="{{route('admin.lot.one', $lot)}}">More</a>
                 </div>
             @endforeach
         </div>

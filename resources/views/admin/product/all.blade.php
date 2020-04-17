@@ -2,7 +2,8 @@
 
 @section('admin.content')
     <div class="container-lg">
-        <div class="row">
+        <a class="btn btn-success" href="{{ route('admin.product.add') }}">Create new</a>
+        <div class="row m-1">
             @foreach ($products as $product)
                 <div class="card col-3 p-1" style="width: 18rem;">
                     <img src="http://placehold.it/150x100" class="card-img-top" alt="...">
@@ -11,7 +12,7 @@
                         <p class="card-text"><strong>Описание:</strong> {{ $product->description }}</p>
                         <p class="card-text"><strong>Владелец:</strong> {{ $product->owner()->name }}</p>
                     </div>
-                    <a class="btn btn-primary" href="{{route('product.one', $product)}}">More</a>
+                    <a class="btn btn-primary" href="{{route('admin.product.one', $product)}}">More</a>
                 </div>
             @endforeach
             {{ $products->links() }}

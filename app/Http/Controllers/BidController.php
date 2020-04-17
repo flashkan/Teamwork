@@ -17,7 +17,7 @@ class BidController extends Controller
         if ((int) $bidsLot->seller_id === (int) Auth::id()) {
             return redirect()
                 ->back()
-                ->with('success', 'Seller can\'t bid');
+                ->with('failure', 'Seller can\'t bid');
         }
 
         $highestBid = Bid::where('lot_id', $lot_id)
@@ -29,7 +29,7 @@ class BidController extends Controller
             if ($highestBid->amount > $request->input('amount')) {
                 return redirect()
                     ->back()
-                    ->with('success', 'Bid to low');
+                    ->with('failure', 'Bid to low');
             }
         }
 
@@ -55,7 +55,7 @@ class BidController extends Controller
         } else {
             return redirect()
                 ->back()
-                ->with('success', 'Something went wrong');
+                ->with('failure', 'Something went wrong');
         }
     }
 }

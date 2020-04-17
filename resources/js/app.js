@@ -20,8 +20,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('lots-timer-component', require('./components/LotsTimerComponent.vue').default);
 Vue.component('lot-timer-component', require('./components/LotTimerComponent.vue').default);
+Vue.component('lots-timer-component', require('./components/LotsTimerComponent.vue').default);
+Vue.component('lots-timer-for-admin-component', require('./components/LotsTimerForAdminComponent.vue').default);
 Vue.component('ajax-template-component', require('./components/AjaxTemplateComponent.vue').default);
 
 /**

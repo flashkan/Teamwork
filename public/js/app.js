@@ -2143,6 +2143,85 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['lot'],
+  data: function data() {
+    return {
+      open_lot: true,
+      date_end: new Date(this.lot.end_time).getTime(),
+      days: '00',
+      hours: '00',
+      minutes: '00',
+      seconds: '00'
+    };
+  },
+  mounted: function mounted() {
+    if (this.date_end > Date.now()) this.timer();else this.open_lot = false;
+  },
+  methods: {
+    timer: function timer() {
+      var this_timer = this;
+      var set_interval_id = setInterval(function () {
+        var date = this_timer.date_end - Date.now();
+        var tdays = Math.floor(date / (1000 * 60 * 60 * 24)).toString();
+        var thours = Math.floor(date % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)).toString();
+        var tminutes = Math.floor(date % (1000 * 60 * 60) / (1000 * 60)).toString();
+        var tseconds = Math.floor(date % (1000 * 60) / 1000).toString();
+        this_timer.days = tdays.padStart(2, '0');
+        this_timer.hours = thours.padStart(2, '0');
+        this_timer.minutes = tminutes.padStart(2, '0');
+        this_timer.seconds = tseconds.padStart(2, '0');
+
+        if (date < 1000) {
+          this_timer.open_lot = false;
+          clearInterval(set_interval_id);
+        }
+      }, 1000);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -37785,6 +37864,107 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=template&id=e0e29542&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=template&id=e0e29542& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.open_lot === true
+      ? _c("div", [
+          _c(
+            "div",
+            {
+              staticClass:
+                "bg-info rounded-lg d-flex justify-content-around p-3"
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center"
+                },
+                [
+                  _c("p", { staticClass: "text-danger text-b m-0" }, [
+                    _vm._v(_vm._s(_vm.days))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Дни")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center"
+                },
+                [
+                  _c("p", { staticClass: "text-danger text-b m-0" }, [
+                    _vm._v(_vm._s(_vm.hours))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Часы")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center"
+                },
+                [
+                  _c("p", { staticClass: "text-danger text-b m-0" }, [
+                    _vm._v(_vm._s(_vm.minutes))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Минуты")])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center"
+                },
+                [
+                  _c("p", { staticClass: "text-danger text-b m-0" }, [
+                    _vm._v(_vm._s(_vm.seconds))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Секунды")])
+                ]
+              )
+            ]
+          )
+        ])
+      : _c(
+          "div",
+          { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+          [_vm._v("Этот лот закрыт")]
+        )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -49968,8 +50148,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('lots-timer-component', __webpack_require__(/*! ./components/LotsTimerComponent.vue */ "./resources/js/components/LotsTimerComponent.vue")["default"]);
 Vue.component('lot-timer-component', __webpack_require__(/*! ./components/LotTimerComponent.vue */ "./resources/js/components/LotTimerComponent.vue")["default"]);
+Vue.component('lots-timer-component', __webpack_require__(/*! ./components/LotsTimerComponent.vue */ "./resources/js/components/LotsTimerComponent.vue")["default"]);
+Vue.component('lots-timer-for-admin-component', __webpack_require__(/*! ./components/LotsTimerForAdminComponent.vue */ "./resources/js/components/LotsTimerForAdminComponent.vue")["default"]);
 Vue.component('ajax-template-component', __webpack_require__(/*! ./components/AjaxTemplateComponent.vue */ "./resources/js/components/AjaxTemplateComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50299,6 +50480,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotsTimerComponent_vue_vue_type_template_id_5d0817c5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotsTimerComponent_vue_vue_type_template_id_5d0817c5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/LotsTimerForAdminComponent.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/LotsTimerForAdminComponent.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LotsTimerForAdminComponent_vue_vue_type_template_id_e0e29542___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LotsTimerForAdminComponent.vue?vue&type=template&id=e0e29542& */ "./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=template&id=e0e29542&");
+/* harmony import */ var _LotsTimerForAdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LotsTimerForAdminComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LotsTimerForAdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LotsTimerForAdminComponent_vue_vue_type_template_id_e0e29542___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LotsTimerForAdminComponent_vue_vue_type_template_id_e0e29542___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/LotsTimerForAdminComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LotsTimerForAdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LotsTimerForAdminComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LotsTimerForAdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=template&id=e0e29542&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=template&id=e0e29542& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotsTimerForAdminComponent_vue_vue_type_template_id_e0e29542___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LotsTimerForAdminComponent.vue?vue&type=template&id=e0e29542& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LotsTimerForAdminComponent.vue?vue&type=template&id=e0e29542&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotsTimerForAdminComponent_vue_vue_type_template_id_e0e29542___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotsTimerForAdminComponent_vue_vue_type_template_id_e0e29542___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

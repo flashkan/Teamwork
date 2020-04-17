@@ -11,6 +11,31 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public static function rules()
+    {
+        if (preg_match('/update/', request()->getRequestUri())) {
+            $rulesForUpdate = [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+            ];
+
+            if (request()->email !== request()->old_email) {
+                $rulesForUpdate['email'] .= '|unique:users';
+            }
+
+            if (request()->update_password) {
+                $rulesForUpdate['password'] = 'required|string|min:8|confirmed';
+            }
+
+            return $rulesForUpdate;
+        }
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ];
+    }
+
     /**
      * The attributes that are mass assignable.
      *
