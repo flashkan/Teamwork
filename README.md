@@ -1,3 +1,42 @@
+## Install
+<ol>
+    <li>
+        <strong>Делаем клон репозитория с зависимыми модулями в текущую директорию:</strong> <br> 
+        git clone https://github.com/flashkan/Teamwork.git . --recursive
+    </li>
+    <li>
+        <strong>Обновление зависимостей:</strong> <br>
+        composer update
+    </li>
+    <li>
+        <strong>Копировать файлы (использовал git bash):</strong><br>
+        <ol>
+            <li>в папке laradock:
+                cp env-example .env
+            </li>
+            <li>в корневой папке:
+                cp .env.example .env
+            </li>
+        </ol>
+    </li>
+    <li>
+        <strong>Запуск контейнера (в папке laradock):</strong> <br>
+        docker-compose up -d nginx mysql
+    </li>
+    <li>
+        <strong>Генерация ключа для приложения laravel:</strong> <br>
+        php artisan key:generate
+    </li>
+    <li>
+        <strong>Доставляем зависимости:</strong> <br>
+        npm install
+    </li>
+    <li>
+        <strong>Разворачиваеи приложение для разработчика:</strong> <br>
+        npm run dev
+    </li>
+</ol>
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">

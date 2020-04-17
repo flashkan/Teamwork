@@ -1,0 +1,10 @@
+.productWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product {
+    width: 300px;
+    border: 1px solid black;
+}
