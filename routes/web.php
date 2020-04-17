@@ -85,8 +85,28 @@ Route::group(
         'as' => 'admin.',
         'middleware' => ['auth', 'is.admin'],
     ], function () {
-    Route::get('/users', 'AdminController@users')->name('users');
-    Route::get('/products', 'AdminController@products')->name('products');
-    Route::get('/lots', 'AdminController@lots')->name('lots');
+    /**Users*/
+    Route::get('/user/all', 'AdminController@userAll')->name('user.all');
+    Route::get('/user/one/{user}', 'AdminController@userOne')->name('user.one');
+    Route::match(['get', 'post'], '/user/add', 'AdminController@userAdd')->name('user.add');
+    Route::match(['get', 'post'], '/user/update/{user}', 'AdminController@userUpdate')
+        ->name('user.update');
+    Route::get('/user/delete/{user}', 'AdminController@userDelete')->name('user.delete');
+
+    /**Products*/
+    Route::get('/product/all', 'AdminController@productAll')->name('product.all');
+    Route::get('/product/one/{product}', 'AdminController@productOne')->name('product.one');
+    Route::match(['get', 'post'], '/product/add', 'AdminController@productAdd')->name('product.add');
+    Route::match(['get', 'post'], '/product/update/{product}', 'AdminController@productUpdate')
+        ->name('product.update');
+    Route::get('/product/delete/{product}', 'AdminController@productDelete')->name('product.delete');
+
+    /**Lots*/
+    Route::get('/lot/all', 'AdminController@lotAll')->name('lot.all');
+    Route::get('/lot/one/{lot}', 'AdminController@lotOne')->name('lot.one');
+    Route::match(['get', 'post'], '/lot/add', 'AdminController@lotAdd')->name('lot.add');
+    Route::match(['get', 'post'], '/lot/update/{lot}', 'AdminController@lotUpdate')
+        ->name('lot.update');
+    Route::get('/lot/delete/{lot}', 'AdminController@lotDelete')->name('lot.delete');
 }
 );

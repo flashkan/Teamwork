@@ -53,7 +53,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @if(\App\User::isAdmin())
-                                <a class="dropdown-item" href="{{ route('admin.users') }}">{{ __('Admin panel') }}</a>
+                                <a class="dropdown-item" href="{{ route('admin.user.all') }}">{{ __('Admin panel') }}</a>
                             @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

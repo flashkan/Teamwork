@@ -62,7 +62,7 @@ class BidsSeeder extends Seeder
     public function checkAmountAndTime($data, $amount, $createdAt)
     {
         foreach ($data as $row) {
-            if (($row['amount'] > $amount && $row['created_at'] < $createdAt) || 
+            if (($row['amount'] > $amount && $row['created_at'] < $createdAt) ||
                 ($row['amount'] < $amount && $row['created_at'] > $createdAt)) {
                 return false;
             }

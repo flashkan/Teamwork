@@ -36,7 +36,7 @@ class ProductController extends Controller
                 ->route('product.one', ['product' => $product])
                 ->with('success', 'Product successfully created');
         }
-        return view('products.add', ['product' => $product,]);
+        return view('products.add', ['product' => $product]);
     }
 
     public function update(Request $request, Product $product)
@@ -50,7 +50,7 @@ class ProductController extends Controller
                 ->route('product.one', ['product' => $product])
                 ->with('success', 'Product successfully updated');
         }
-        return view('products.add', ['product' => $product,]);
+        return view('products.add', ['product' => $product]);
     }
 
     public function delete(Product $product)
