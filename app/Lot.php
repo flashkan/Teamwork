@@ -59,8 +59,13 @@ class Lot extends Model
 
                 if ($lot->save()) {
                     $message = "Lot $lot->id was closed";
+
+                    if (isset($lot->current_buyer_id)) {
+                        $product = $lot->product();
+                        $product->transferOwnership($lot->current_buyer_id);
+                    }
                 } else {
-                    $message = "Error (Lot $lot->id was't closed) in " . __FILE__ . ' line ' . __LINE__;
+                    $message = "Error (Lot $lot->id wasn't closed) in " . __FILE__ . ' line ' . __LINE__;
                 }
                 info($message); // storage/logs/laravel.log
             }

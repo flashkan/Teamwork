@@ -58,13 +58,13 @@ Route::group(
 
 Route::group(
     [
-        'prefix' => 'account',
-        'as' => 'account.',
+        'prefix' => 'balance',
+        'as' => 'balance.',
         'middleware' => 'auth',
     ], function () {
-    Route::get('/my', 'AccountController@my')->name('my');
-    Route::post('/increase', 'AccountController@increase')->name('increase');
-    Route::post('/decrease', 'AccountController@decrease')->name('decrease');
+    Route::get('/my', 'BalanceController@my')->name('my');
+    Route::post('/increase', 'BalanceController@increase')->name('increase');
+    Route::post('/decrease', 'BalanceController@decrease')->name('decrease');
 }
 );
 

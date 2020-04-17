@@ -31,7 +31,14 @@ class Product extends Model
         return $this->belongsTo(User::class)->first();
     }
 
-    public function ownerLots() {
+    public function ownerLots()
+    {
         return $this->hasMany(Lot::class)->get();
+    }
+
+    public function transferOwnership($currentBuyerId)
+    {
+        $this->bought_by = $currentBuyerId;
+        $this->save();
     }
 }
