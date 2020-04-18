@@ -6,7 +6,7 @@
         <div class="row m-1">
             @foreach ($lots as $lot)
                 <div class="card col-4 p-1" style="width: 18rem;">
-                    <img src="http://placehold.it/150x100" class="card-img-top" alt="...">
+                    <img src="http://lorempixel.com/250/200" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><strong>Стартовая цена:</strong> {{ $lot->start_price }}</h5>
                         @if(isset($lot->buyback_price))
