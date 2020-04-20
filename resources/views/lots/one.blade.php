@@ -30,13 +30,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($bids as $bid)
-                    <tr>
-                        <td>{{ $bid->user_id }}</td>
-                        <td>{{ $bid->amount }}</td>
-                        <td>{{ $bid->created_at }}</td>
-                    </tr>
-                @endforeach
+{{--                @foreach ($bids as $bid)--}}
+{{--                    <tr>--}}
+{{--                        <td>{{ $bid->user_id }}</td>--}}
+{{--                        <td>{{ $bid->amount }}</td>--}}
+{{--                        <td>{{ $bid->created_at }}</td>--}}
+{{--                    </tr>--}}
+{{--                @endforeach--}}
                 </tbody>
             </table>
         </div>
