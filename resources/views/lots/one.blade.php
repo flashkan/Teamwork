@@ -34,7 +34,8 @@
                     <tr>
                         <td>{{ $bid->user_id }}</td>
                         <td>{{ $bid->amount }}</td>
-                        <td>{{ $bid->created_at->format('d.m.Y H:i') }}</td>
+{{--                        <td>{{ $bid->created_at->format('d.m.Y H:i') }}</td>--}}
+{{--                        @dump($bid->created_at->format('d.m.Y H:i'))--}}
                     </tr>
                 @endforeach
                 </tbody>
