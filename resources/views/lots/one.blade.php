@@ -10,7 +10,7 @@
         <p class="card-text"><strong>Дата окончание:</strong> {{ $lot->end_time }}</p>
         <p class="card-text"><strong>Принадлежит продукту:</strong> {{ $lot->product()->name }}</p>
         <div class="col-5 p-0">
-{{--            <lot-timer-component :lot="{{$lot}}" :url="'{{ route('lot.all') }}'"></lot-timer-component>--}}
+            <lot-timer-component :lot="{{$lot}}" :url="'{{ route('lot.all') }}'"></lot-timer-component>
         </div>
         @auth
             @if((int) $lot->seller_id === (int) \Illuminate\Support\Facades\Auth::id())
@@ -20,7 +20,7 @@
         @endauth
 
         <h2>Bids</h2>
-        <div class="containter w-25 p-3">
+        <div class="container w-25 p-3">
             <table class="table table-striped">
                 <thead>
                 <tr>
