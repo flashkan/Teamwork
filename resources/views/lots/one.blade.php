@@ -20,7 +20,7 @@
         @endauth
 
         <h2>Bids</h2>
-        <div class="container w-25 p-3">
+        <div class="w-25 p-3">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -30,13 +30,9 @@
                 </tr>
                 </thead>
                 <tbody>
-{{--                @foreach ($bids as $bid)--}}
-{{--                    <tr>--}}
-{{--                        <td>{{ $bid->user_id }}</td>--}}
-{{--                        <td>{{ $bid->amount }}</td>--}}
-{{--                        <td>{{ $bid->created_at }}</td>--}}
-{{--                    </tr>--}}
-{{--                @endforeach--}}
+                @foreach ($bids as $bid)
+
+                @endforeach
                 </tbody>
             </table>
         </div>
