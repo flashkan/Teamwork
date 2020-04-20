@@ -123,7 +123,7 @@ class AdminController extends Controller
 
     public function lotOne(Lot $lot)
     {
-        return view('admin.lot.one', ['lot' => $lot, 'bids' => []/*$lot->bids()->lot('created_at')*/]);
+        return view('admin.lot.one', ['lot' => $lot, 'bids' => $lot->bids()->sortByDesc('created_at')]);
     }
 
     public function lotAdd(Request $request)
