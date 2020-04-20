@@ -20,7 +20,7 @@
         @endauth
 
         <h2>Bids</h2>
-        <div class="containter w-25 p-3">
+        <div class="w-25 p-3">
             <table class="table table-striped">
                 <thead>
                 <tr>

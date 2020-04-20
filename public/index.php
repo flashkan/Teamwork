@@ -59,4 +59,4 @@ $response->send();
 
 $kernel->terminate($request, $response);
 
-dispatch(new \App\Jobs\FinishLotJob());
+//dispatch(new \App\Jobs\FinishLotJob());

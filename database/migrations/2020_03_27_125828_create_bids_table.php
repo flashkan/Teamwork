@@ -18,8 +18,8 @@ class CreateBidsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('lot_id')->unsigned();
             $table->decimal('amount', 15, 2)->unsigned();
-            $table->timestampTZ('created_at')->useCurrent();
-            $table->timestampTZ('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
