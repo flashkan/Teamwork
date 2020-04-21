@@ -37,6 +37,13 @@
     </li>
 </ol>
 
+## Set up Cron
+
+- Войти в контейнер (из папки laradock): `docker-compose exec workspace bash`
+- Открыть файл крона: `crontab -e`
+- Вставить туда следующую строку: `* * * * * laradock php /var/www/artisan schedule:run >> /dev/null 2>&1`
+- Сохранить файл в директорию `/etc/cron.d`
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
