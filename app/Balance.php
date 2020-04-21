@@ -15,4 +15,14 @@ class Balance extends Model
     protected $fillable = [
         'user_id', 'main_balance',
     ];
+
+    public function increase($amount) {
+        $this->main_balance += $amount;
+        return $this->update();
+    }
+
+    public function decrease($amount) {
+        $this->main_balance -= $amount;
+        return $this->update();
+    }
 }

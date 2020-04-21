@@ -19,10 +19,9 @@ class BalanceController extends Controller
     public function increase(Request $request)
     {
         $userBalance = Auth::user()->balance();
-        $userBalance->main_balance += $request->increase_balance;
-        $saved = $userBalance->save();
+        $updated = $userBalance->increase($request->increase_balance);
 
-        if ($saved) {
+        if ($updated) {
             return redirect()
                 ->route('balance.my', ['balance' => $userBalance])
                 ->with('success', "Plus $request->increase_balance on your balance");
@@ -32,10 +31,9 @@ class BalanceController extends Controller
     public function decrease(Request $request)
     {
         $userBalance = Auth::user()->balance();
-        $userBalance->main_balance -= $request->decrease_balance;
-        $saved = $userBalance->save();
+        $updated = $userBalance->decrease($request->decrease_balance);
 
-        if ($saved) {
+        if ($updated) {
             return redirect()
                 ->route('balance.my', ['balance' => $userBalance])
                 ->with('success', "Minus $request->decrease_balance on your balance");

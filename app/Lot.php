@@ -5,6 +5,7 @@ namespace App;
 use App\Rules\OneOpenLot;
 use Illuminate\Database\Eloquent\Model;
 use App\Product;
+use App\Balance;
 
 class Lot extends Model
 {
@@ -63,6 +64,12 @@ class Lot extends Model
                     if (isset($lot->current_buyer_id)) {
                         $product = $lot->product();
                         $product->transferOwnership($lot->current_buyer_id);
+                        
+                        $sellerBalance = Balance::find($lot->seller_id);
+                        $sellerBalance->increase($lot->current_rate);
+
+                        $buyerBalance = Balance::find($lot->current_buyer_id);
+                        $buyerBalance->decrease($lot->current_rate);
                     }
                 } else {
                     $message = "Error (Lot $lot->id wasn't closed) in " . __FILE__ . ' line ' . __LINE__;

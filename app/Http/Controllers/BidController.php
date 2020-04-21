@@ -36,7 +36,7 @@ class BidController extends Controller
         if (empty($bidsLot->current_buyer_id) && $bidsLot->start_price > $request->input('amount')) {
             return redirect()
                     ->back()
-                    ->with('success', 'Bid can\'t be lower than starting price');
+                    ->with('failure', 'Bid can\'t be lower than starting price');
         }
 
         $newBid = new Bid();
