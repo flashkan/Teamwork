@@ -16,19 +16,7 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('lot.my') }}">{{ __('My Lots') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('lot.add') }}">{{ __('Add Lot') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('product.my') }}">{{ __('My Product') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('product.add') }}">{{ __('Add Product') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('balance.my') }}">{{ __('My Balance') }}</a>
+                        <a class="nav-link" href="{{ route('account.index') }}">{{ __('My Account') }}</a>
                     </li>
                 @endauth
             </ul>

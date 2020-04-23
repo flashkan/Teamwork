@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('lot-timer-component', require('./components/LotTimerComponent.vue').default);
 Vue.component('lots-timer-component', require('./components/LotsTimerComponent.vue').default);
 Vue.component('lots-timer-for-admin-component', require('./components/LotsTimerForAdminComponent.vue').default);
+Vue.component('check-pass-component', require('./components/CheckPassComponent.vue').default);
 Vue.component('ajax-template-component', require('./components/AjaxTemplateComponent.vue').default);
 
 /**

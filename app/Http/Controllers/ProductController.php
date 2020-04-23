@@ -14,11 +14,6 @@ class ProductController extends Controller
         return view('products.all', ['products' => Product::all()]);
     }
 
-    public function my()
-    {
-        return view('products.my', ['products' => Auth::user()->unsoldProducts()]);
-    }
-
     public function one(Product $product)
     {
         return view('products.one', ['product' => $product]);

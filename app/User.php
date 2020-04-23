@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -32,6 +34,13 @@ class User extends Authenticatable
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ];
+    }
+
+    public static function rulesForUpdatePass()
+    {
+        return [
             'password' => 'required|string|min:8|confirmed',
         ];
     }
@@ -91,5 +100,10 @@ class User extends Authenticatable
     public static function isAdmin()
     {
         if (Auth::user()->is_admin) return true;
+    }
+
+    public static function checkPass($password)
+    {
+        return Hash::check($password, Auth::user()->getAuthPassword());
     }
 }

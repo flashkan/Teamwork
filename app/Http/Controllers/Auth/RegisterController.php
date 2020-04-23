@@ -73,7 +73,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-          
+
             $account = Balance::create([
                 'user_id' => $user->id,
                 'main_balance' => 50,

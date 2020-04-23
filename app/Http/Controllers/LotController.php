@@ -15,11 +15,6 @@ class LotController extends Controller
         return view('lots.all', ['lots' => $openLots]);
     }
 
-    public function my()
-    {
-        return view('lots.my', ['lots' => Auth::user()->seller()]);
-    }
-
     public function one(Lot $lot)
     {
         return view('lots.one', ['lot' => $lot, 'bids' => $lot->bids()->sortByDesc('created_at')]);
