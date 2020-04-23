@@ -30,7 +30,6 @@ Route::group(
     Route::get('/all', 'ProductController@all')->name('all');
     Route::get('/one/{product}', 'ProductController@one')->name('one')
         ->middleware('user.owner');
-    Route::get('/my', 'ProductController@my')->name('my');
     Route::match(['get', 'post'], '/add', 'ProductController@add')->name('add');
     Route::match(['get', 'post'], '/update/{product}', 'ProductController@update')->name('update')
         ->middleware('user.owner');
@@ -46,7 +45,6 @@ Route::group(
     ], function () {
     Route::get('/all', 'LotController@all')->name('all');
     Route::get('/one/{lot}', 'LotController@one')->name('one')->middleware('closed.lot');
-    Route::get('/my', 'LotController@my')->name('my')->middleware('auth');
     Route::match(['get', 'post'], '/add', 'LotController@add')->name('add')
         ->middleware('auth');
     Route::match(['get', 'post'], '/update/{lot}', 'LotController@update')->name('update')
@@ -62,7 +60,6 @@ Route::group(
         'as' => 'balance.',
         'middleware' => 'auth',
     ], function () {
-    Route::get('/my', 'BalanceController@my')->name('my');
     Route::post('/increase', 'BalanceController@increase')->name('increase');
     Route::post('/decrease', 'BalanceController@decrease')->name('decrease');
 }
@@ -108,5 +105,16 @@ Route::group(
     Route::match(['get', 'post'], '/lot/update/{lot}', 'AdminController@lotUpdate')
         ->name('lot.update');
     Route::get('/lot/delete/{lot}', 'AdminController@lotDelete')->name('lot.delete');
+}
+);
+
+Route::group(
+    [
+        'prefix' => 'account',
+        'as' => 'account.',
+        'middleware' => 'auth',
+    ], function () {
+    Route::get('/index', 'AccountController@index')->name('index');
+    Route::match(['put', 'post'], '/update-pass', 'AccountController@updatePass')->name('update-pass');
 }
 );

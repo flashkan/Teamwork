@@ -8,14 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class BalanceController extends Controller
 {
-    public function my()
-    {
-        if (Auth::check()) {
-            $userBalance = Auth::user()->balance();
-            return view('balance.my', ['balance' => $userBalance]);
-        }
-    }
-
     public function increase(Request $request)
     {
         $userBalance = Auth::user()->balance();
@@ -23,7 +15,7 @@ class BalanceController extends Controller
 
         if ($updated) {
             return redirect()
-                ->route('balance.my', ['balance' => $userBalance])
+                ->route('account.index', ['balance' => $userBalance])
                 ->with('success', "Plus $request->increase_balance on your balance");
         }
     }
@@ -35,7 +27,7 @@ class BalanceController extends Controller
 
         if ($updated) {
             return redirect()
-                ->route('balance.my', ['balance' => $userBalance])
+                ->route('account.index', ['balance' => $userBalance])
                 ->with('success', "Minus $request->decrease_balance on your balance");
         }
     }
