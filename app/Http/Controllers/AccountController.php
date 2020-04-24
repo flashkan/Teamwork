@@ -12,6 +12,7 @@ class AccountController extends Controller
     public function index()
     {
         $user = Auth::user();
+//        dd($user->seller());
         return view('account', ['user' => $user,
             'products' => $user->products(),
             'lots' => $user->seller(),

@@ -8,6 +8,7 @@ use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -85,6 +86,7 @@ class AdminController extends Controller
         $product = new Product();
         if ($request->isMethod('post')) {
             $this->validate($request, Product::rules());
+            if ($request->img) $product->addImage($request);
             $product->fill($request->all());
             $product->save();
             return redirect()
@@ -98,6 +100,12 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')) {
             $this->validate($request, Product::rules());
+            if ($request->img_del) {
+                $product->deleteImage($request);
+            } elseif ($request->img) {
+                if ($product->img_url) $product->deleteImage($request);
+                $product->addImage($request);
+            }
             $product->fill($request->all());
             $product->save();
             return redirect()
@@ -123,7 +131,10 @@ class AdminController extends Controller
 
     public function lotOne(Lot $lot)
     {
-        return view('admin.lot.one', ['lot' => $lot, 'bids' => $lot->bids()->sortByDesc('created_at')]);
+        return view('admin.lot.one', [
+            'lot' => $lot,
+            'product' => $lot->product(),
+            'bids' => $lot->bids()->sortByDesc('created_at'),]);
     }
 
     public function lotAdd(Request $request)
