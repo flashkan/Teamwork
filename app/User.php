@@ -74,7 +74,8 @@ class User extends Authenticatable
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'owner_id')->get();
+        return $this->hasMany(Product::class, 'owner_id')
+            ->where('bought_by', null)->get();
     }
 
     public function unsoldProducts()

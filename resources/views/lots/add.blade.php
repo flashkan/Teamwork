@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <a class="btn btn-outline-primary" href="{{back()->getTargetUrl()}}">&#9668 Back</a>
         <form method="post">
             @csrf
             <div class="form-group">

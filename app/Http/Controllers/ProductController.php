@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function all()
-    {
-        return view('products.all', ['products' => Product::all()]);
-    }
-
     public function one(Product $product)
     {
         return view('products.one', ['product' => $product]);
@@ -25,6 +20,7 @@ class ProductController extends Controller
         if ($request->isMethod('post')) {
             $request->merge(['owner_id' => Auth::id()]); // Добавляем авторизованного пользователя.
             $this->validate($request, Product::rules());
+            if ($request->img) $product->addImage($request);
             $product->fill($request->all());
             $product->save();
             return redirect()
@@ -39,6 +35,12 @@ class ProductController extends Controller
         if ($request->isMethod('post')) {
             $request->merge(['owner_id' => $product->owner_id]);
             $this->validate($request, Product::rules());
+            if ($request->img_del) {
+                $product->deleteImage($request);
+            } elseif ($request->img) {
+                if ($product->img_url) $product->deleteImage($request);
+                $product->addImage($request);
+            }
             $product->fill($request->all());
             $product->save();
             return redirect()

@@ -3,19 +3,25 @@
 @section('admin.content')
     <div class="container">
         <a class="btn btn-outline-primary" href="{{back()->getTargetUrl()}}">&#9668 Back</a>
-        <h5 class="card-title"><strong>Стартовая цена:</strong> {{ $lot->start_price }}</h5>
-        @if(isset($lot->buyback_price))
-            <h5 class="card-title"><strong>Цена выкупа:</strong> {{ $lot->buyback_price }}</h5>
-        @endif
-        <p class="card-text"><strong>Дата окончание:</strong> {{ $lot->end_time }}</p>
-        <p class="card-text"><strong>Принадлежит продукту:</strong> {{ $lot->product()->name }}</p>
-        <p class="card-text"><strong>Seller:</strong> {{ $lot->seller()->name }}</p>
-        <p class="card-text"><strong>Seller Email:</strong> {{ $lot->seller()->email }}</p>
-        <div class="col-5 p-0">
-            <lots-timer-for-admin-component :lot="{{$lot}}"></lots-timer-for-admin-component>
+        <div>
+            <img class="card-img col-4 p-0 my-2" src="{{ $product->img_url ? Storage::url($product->img_url)
+            : Storage::url('placeholder.jpg') }}" alt="img_product">
+            <h3 class="card-text"><strong>Product:</strong> {{ $product->name }}</h3>
+            <h5 class="card-text"><strong>Description:</strong> {{ $product->description }}</h5>
+            <h5 class="card-title"><strong>Start price:</strong> {{ $lot->start_price }}</h5>
+            @if(isset($lot->buyback_price))
+                <p class="card-title"><strong>Buyback price:</strong> {{ $lot->buyback_price }}</p>
+            @endif
+            <p class="card-text"><strong>Seller:</strong> {{ $lot->seller()->name }}</p>
+            <p class="card-text"><strong>End date:</strong> {{ $lot->end_time }}</p>
+            <div class="col-5 p-0">
+                <lots-timer-for-admin-component :lot="{{$lot}}"></lots-timer-for-admin-component>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-success" href="{{ route('admin.lot.update', $lot) }}">Update</a>
+                <a class="btn btn-danger" href="{{ route('admin.lot.delete', $lot) }}">Delete</a>
+            </div>
         </div>
-        <a class="btn btn-success" href="{{ route('admin.lot.update', $lot) }}">Update</a>
-        <a class="btn btn-danger" href="{{ route('admin.lot.delete', $lot) }}">Delete</a>
 
         <h2>Bids</h2>
         <div class="containter w-25 p-3">

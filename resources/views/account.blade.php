@@ -13,9 +13,11 @@
             <div class="row m-1">
                 @forelse ($products as $product)
                     <div class="card col-3 p-1" style="width: 18rem;">
+                        <img class="card-img p-0 my-2" src="{{ $product->img_url ? Storage::url($product->img_url)
+                        : Storage::url('placeholder.jpg') }}" alt="img_product">
                         <div class="card-body">
-                            <p>Name: {{ $product->name }}</p>
-                            <p>Description: {{ $product->description }}</p>
+                            <h5 class="card-title"><strong>Name product:</strong> {{ $product->name }}</h5>
+                            <p class="card-text"><strong>Description:</strong> {{ $product->description }}</p>
                         </div>
                         <a class="btn btn-primary" href="{{route('product.one', $product)}}">More</a>
                     </div>
@@ -31,15 +33,15 @@
                 @forelse ($lots as $lot)
                     <div class="card col-4 p-1" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title"><strong>Стартовая цена:</strong> {{ $lot->start_price }}</h5>
-                            @if(($lot->buyback_price))
-                                <h5 class="card-title"><strong>Цена выкупа:</strong> {{ $lot->buyback_price }}</h5>
+                            <img class="card-img p-0 my-2" src="{{ $lot->product()->img_url
+? Storage::url($lot->product()->img_url) : Storage::url('placeholder.jpg') }}" alt="img_product">
+                            <h4 class="card-text"><strong>Product:</strong> {{ $lot->product()->name }}</h4>
+                            <h5 class="card-title"><strong>Start price:</strong> {{ $lot->start_price }}</h5>
+                            @if(isset($lot->buyback_price))
+                                <p class="card-title"><strong>Buyback price:</strong> {{ $lot->buyback_price }}</p>
                             @endif
-                            <p class="card-text"><strong>Дата окончание:</strong> {{ $lot->end_time }}</p>
-                            <p class="card-text"><strong>Принадлежит продукту:</strong> {{ $lot->product()->name }}</p>
                         </div>
-                        <lots-timer-component :lot="'{{$lot}}'"
-                                              :url="'{{ route('lot.one', $lot) }}'"></lots-timer-component>
+                        <lots-timer-component :lot="{{$lot}}" :url="'{{ route('lot.one', $lot) }}'"></lots-timer-component>
                     </div>
                 @empty
                     <h2 class="text-center col-12">You don't have lot for your products</h2>
@@ -53,15 +55,16 @@
                 @forelse ($bids as $bid)
                     <div class="card col-4 p-1" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title"><strong>Стартовая цена:</strong> {{ $bid->start_price }}</h5>
-                            @if(($bid->buyback_price))
-                                <h5 class="card-title"><strong>Цена выкупа:</strong> {{ $bid->buyback_price }}</h5>
+                            <img class="card-img p-0 my-2" src="{{ $bid->product()->img_url
+? Storage::url($bid->product()->img_url) : Storage::url('placeholder.jpg') }}" alt="img_product">
+                            <h4 class="card-text"><strong>Product:</strong> {{ $bid->product()->name }}</h4>
+                            <h5 class="card-title"><strong>Start price:</strong> {{ $bid->start_price }}</h5>
+                            @if(isset($bid->buyback_price))
+                                <p class="card-title"><strong>Buyback price:</strong> {{ $bid->buyback_price }}</p>
                             @endif
-                            <p class="card-text"><strong>Дата окончание:</strong> {{ $bid->end_time }}</p>
-                            <p class="card-text"><strong>Принадлежит продукту:</strong> {{ $bid->product()->name }}</p>
+                            <h3>Your bid: {{ $bid->current_rate }}</h3>
                         </div>
-                        <lots-timer-component :lot="'{{$bid}}'"
-                                              :url="'{{ route('lot.one', $bid) }}'"></lots-timer-component>
+                        <lots-timer-component :lot="{{$bid}}" :url="'{{ route('lot.one', $bid) }}'"></lots-timer-component>
                     </div>
                 @empty
                     <h2 class="text-center col-12">You don't have bids</h2>

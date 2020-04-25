@@ -27,7 +27,6 @@ Route::group(
         'as' => 'product.',
         'middleware' => 'auth',
     ], function () {
-    Route::get('/all', 'ProductController@all')->name('all');
     Route::get('/one/{product}', 'ProductController@one')->name('one')
         ->middleware('user.owner');
     Route::match(['get', 'post'], '/add', 'ProductController@add')->name('add');

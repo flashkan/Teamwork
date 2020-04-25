@@ -3,7 +3,7 @@
 @section('admin.content')
     <div class="container">
         <a class="btn btn-outline-primary" href="{{back()->getTargetUrl()}}">&#9668 Back</a>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="user_owner_id">User:</label>
@@ -16,6 +16,21 @@
                     @endforeach
                 </select>
                 @error('owner_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            @isset($product->img_url)
+                <img class="card-img col-4 p-0 my-2" src="{{ Storage::url($product->img_url)}}" alt="img_product">
+                <div class="form-group form-check">
+                    <input name="img_del" type="checkbox" class="form-check-input" id="exampleCheck1" value="1">
+                    <label class="form-check-label" for="exampleCheck1">Delete current image? New image will not be
+                        uploaded.</label>
+                </div>
+            @endisset
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Upload image:</label>
+                <input type="file" name="img" class="form-control-file" id="exampleFormControlFile1">
+                @error('img')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
