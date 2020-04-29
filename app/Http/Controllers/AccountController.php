@@ -13,11 +13,13 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 //        dd($user->seller());
-        return view('account', ['user' => $user,
+        return view('account', [
+            'user' => $user,
             'products' => $user->products(),
             'lots' => $user->seller(),
             'bids' => $user->buyer(),
-            'balance' => $user->balance()]);
+            'balance' => $user->balance()
+        ]);
     }
 
     public function updatePass(Request $request)

@@ -41,7 +41,8 @@
                                 <p class="card-title"><strong>Buyback price:</strong> {{ $lot->buyback_price }}</p>
                             @endif
                         </div>
-                        <lots-timer-component :lot="{{$lot}}" :url="'{{ route('lot.one', $lot) }}'"></lots-timer-component>
+                        <lots-timer-component :lot="{{$lot}}"
+                                              :url="'{{ route('lot.one', $lot) }}'"></lots-timer-component>
                     </div>
                 @empty
                     <h2 class="text-center col-12">You don't have lot for your products</h2>
@@ -64,7 +65,8 @@
                             @endif
                             <h3>Your bid: {{ $bid->current_rate }}</h3>
                         </div>
-                        <lots-timer-component :lot="{{$bid}}" :url="'{{ route('lot.one', $bid) }}'"></lots-timer-component>
+                        <lots-timer-component :lot="{{$bid}}" :user_id="{{ $user->id }}"
+                                              :url="'{{ route('lot.one', $bid) }}'"></lots-timer-component>
                     </div>
                 @empty
                     <h2 class="text-center col-12">You don't have bids</h2>

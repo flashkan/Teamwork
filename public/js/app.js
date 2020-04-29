@@ -2134,6 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['lot', 'url'],
   data: function data() {
@@ -2218,8 +2219,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['lot', 'url'],
+  props: ['lot', 'user_id', 'url'],
   data: function data() {
     return {
       open_lot: true,
@@ -2227,7 +2231,8 @@ __webpack_require__.r(__webpack_exports__);
       days: '00',
       hours: '00',
       minutes: '00',
-      seconds: '00'
+      seconds: '00',
+      current_buyer: this.lot.current_buyer_id
     };
   },
   mounted: function mounted() {
@@ -2267,6 +2272,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -38237,7 +38244,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.days))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Дни")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Days")])
                 ]
               ),
               _vm._v(" "),
@@ -38252,7 +38259,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.hours))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Часы")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Hours")])
                 ]
               ),
               _vm._v(" "),
@@ -38267,7 +38274,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.minutes))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Минуты")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Minutes")])
                 ]
               ),
               _vm._v(" "),
@@ -38282,7 +38289,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.seconds))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Секунды")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Seconds")])
                 ]
               )
             ]
@@ -38291,7 +38298,11 @@ var render = function() {
       : _c(
           "div",
           { staticClass: "alert alert-primary", attrs: { role: "alert" } },
-          [_vm._v("\n        Этот лот закрыт\n    ")]
+          [
+            _vm.current_buyer === _vm.user_id
+              ? _c("p", [_vm._v("You won this lot")])
+              : _c("p", [_vm._v("This lot is closed")])
+          ]
         )
   ])
 }
@@ -38338,7 +38349,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.days))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Дни")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Days")])
                 ]
               ),
               _vm._v(" "),
@@ -38353,7 +38364,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.hours))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Часы")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Hours")])
                 ]
               ),
               _vm._v(" "),
@@ -38368,7 +38379,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.minutes))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Минуты")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Minutes")])
                 ]
               ),
               _vm._v(" "),
@@ -38383,7 +38394,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.seconds))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Секунды")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Seconds")])
                 ]
               )
             ]
@@ -38398,7 +38409,11 @@ var render = function() {
       : _c(
           "div",
           { staticClass: "alert alert-primary", attrs: { role: "alert" } },
-          [_vm._v("Этот лот закрыт")]
+          [
+            _vm.current_buyer === _vm.user_id
+              ? _c("p", [_vm._v("You won this lot")])
+              : _c("p", [_vm._v("This lot is closed")])
+          ]
         )
   ])
 }
@@ -38445,7 +38460,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.days))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Дни")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Days")])
                 ]
               ),
               _vm._v(" "),
@@ -38460,7 +38475,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.hours))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Часы")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Hours")])
                 ]
               ),
               _vm._v(" "),
@@ -38475,7 +38490,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.minutes))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Минуты")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Minutes")])
                 ]
               ),
               _vm._v(" "),
@@ -38490,7 +38505,7 @@ var render = function() {
                     _vm._v(_vm._s(_vm.seconds))
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "m-0" }, [_vm._v("Секунды")])
+                  _c("p", { staticClass: "m-0" }, [_vm._v("Seconds")])
                 ]
               )
             ]
@@ -38499,7 +38514,7 @@ var render = function() {
       : _c(
           "div",
           { staticClass: "alert alert-primary", attrs: { role: "alert" } },
-          [_vm._v("Этот лот закрыт")]
+          [_c("p", [_vm._v("This lot is closed")])]
         )
   ])
 }
