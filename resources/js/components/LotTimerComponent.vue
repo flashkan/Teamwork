@@ -5,27 +5,28 @@
                 <div
                     class="col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center">
                     <p class="text-danger text-b m-0">{{ days }}</p>
-                    <p class="m-0">Дни</p>
+                    <p class="m-0">Days</p>
                 </div>
                 <div
                     class="col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center">
                     <p class="text-danger text-b m-0">{{ hours }}</p>
-                    <p class="m-0">Часы</p>
+                    <p class="m-0">Hours</p>
                 </div>
                 <div
                     class="col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center">
                     <p class="text-danger text-b m-0">{{ minutes }}</p>
-                    <p class="m-0">Минуты</p>
+                    <p class="m-0">Minutes</p>
                 </div>
                 <div
                     class="col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center">
                     <p class="text-danger text-b m-0">{{ seconds }}</p>
-                    <p class="m-0">Секунды</p>
+                    <p class="m-0">Seconds</p>
                 </div>
             </div>
         </div>
         <div v-else class="alert alert-primary" role="alert">
-            Этот лот закрыт
+            <p v-if="current_buyer === user_id">You won this lot</p>
+            <p v-else>This lot is closed</p>
         </div>
     </div>
 </template>

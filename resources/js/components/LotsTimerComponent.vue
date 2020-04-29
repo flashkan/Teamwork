@@ -5,33 +5,36 @@
                 <div
                     class="col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center">
                     <p class="text-danger text-b m-0">{{ days }}</p>
-                    <p class="m-0">Дни</p>
+                    <p class="m-0">Days</p>
                 </div>
                 <div
                     class="col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center">
                     <p class="text-danger text-b m-0">{{ hours }}</p>
-                    <p class="m-0">Часы</p>
+                    <p class="m-0">Hours</p>
                 </div>
                 <div
                     class="col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center">
                     <p class="text-danger text-b m-0">{{ minutes }}</p>
-                    <p class="m-0">Минуты</p>
+                    <p class="m-0">Minutes</p>
                 </div>
                 <div
                     class="col-2 text-center bg-light rounded font-weight-bold text-center d-flex flex-column justify-content-center align-items-center">
                     <p class="text-danger text-b m-0">{{ seconds }}</p>
-                    <p class="m-0">Секунды</p>
+                    <p class="m-0">Seconds</p>
                 </div>
             </div>
             <a class="btn btn-primary col-12" :href="url">More</a>
         </div>
-        <div v-else class="alert alert-primary" role="alert">Этот лот закрыт</div>
+        <div v-else class="alert alert-primary" role="alert">
+            <span v-if="current_buyer === user_id">You won this lot</span>
+            <span v-else>This lot is closed</span>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['lot', 'url'],
+        props: ['lot', 'user_id', 'url'],
 
         data() {
             return {
@@ -41,6 +44,7 @@
                 hours: '00',
                 minutes: '00',
                 seconds: '00',
+                current_buyer: this.lot.current_buyer_id,
             }
         },
 

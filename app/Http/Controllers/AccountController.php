@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Bid;
+use App\Lot;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,12 +14,14 @@ class AccountController extends Controller
     public function index()
     {
         $user = Auth::user();
-//        dd($user->seller());
-        return view('account', ['user' => $user,
+        return view('account', [
+            'user' => $user,
             'products' => $user->products(),
             'lots' => $user->seller(),
-            'bids' => $user->buyer(),
-            'balance' => $user->balance()]);
+            'bids' => Lot::userBids($user->id),
+            'wonLots' => Lot::userWonLots($user->id),
+            'balance' => $user->balance()
+        ]);
     }
 
     public function updatePass(Request $request)
