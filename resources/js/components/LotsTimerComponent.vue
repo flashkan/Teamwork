@@ -26,8 +26,8 @@
             <a class="btn btn-primary col-12" :href="url">More</a>
         </div>
         <div v-else class="alert alert-primary" role="alert">
-            <p v-if="current_buyer === user_id">You won this lot</p>
-            <p v-else>This lot is closed</p>
+            <span v-if="current_buyer === user_id">You won this lot</span>
+            <span v-else>This lot is closed</span>
         </div>
     </div>
 </template>

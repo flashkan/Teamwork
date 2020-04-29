@@ -38411,8 +38411,8 @@ var render = function() {
           { staticClass: "alert alert-primary", attrs: { role: "alert" } },
           [
             _vm.current_buyer === _vm.user_id
-              ? _c("p", [_vm._v("You won this lot")])
-              : _c("p", [_vm._v("This lot is closed")])
+              ? _c("span", [_vm._v("You won this lot")])
+              : _c("span", [_vm._v("This lot is closed")])
           ]
         )
   ])

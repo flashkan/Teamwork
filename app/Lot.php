@@ -64,7 +64,7 @@ class Lot extends Model
                     if (isset($lot->current_buyer_id)) {
                         $product = $lot->product();
                         $product->transferOwnership($lot->current_buyer_id);
-                        
+
                         $sellerBalance = Balance::find($lot->seller_id);
                         $sellerBalance->increase($lot->current_rate);
 
@@ -77,5 +77,26 @@ class Lot extends Model
                 info($message); // storage/logs/laravel.log
             }
         }
+    }
+
+    public static function userBids($userId)
+    {
+        $allMyBids = Bid::query()
+            ->where('user_id', $userId)
+            ->get()
+            ->pluck('lot_id')
+            ->unique();
+        return $bids = self::query()
+            ->whereIn('id', $allMyBids->all())
+            ->where('closed', '0')->get();
+    }
+
+    public static function userWonLots($userId)
+    {
+        return self::query()
+            ->where([
+                ['current_buyer_id', $userId],
+                ['closed', 1]
+            ])->get();
     }
 }
