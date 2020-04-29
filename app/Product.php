@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class Product extends Model
 {
@@ -54,5 +55,13 @@ class Product extends Model
     {
         $pathToImg = $request->file('img')->store('uploads', 'public');
         $request->merge(['img_url' => $pathToImg]);
+    }
+
+    public function addImageWithLink(String $link)
+    {
+        $contents = file_get_contents($link);
+        $path = Storage::putFile('uploads', new File($link));
+        $this->img_url = $path;
+        $this->update();
     }
 }
