@@ -28,6 +28,10 @@
         php artisan key:generate
     </li>
     <li>
+        <strong>Генерация link для хранения файлов:</strong> <br>
+        php artisan storage:link
+    </li>
+    <li>
         <strong>Доставляем зависимости:</strong> <br>
         npm install
     </li>

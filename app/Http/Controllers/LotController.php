@@ -29,7 +29,8 @@ class LotController extends Controller
         return view('lots.one', [
             'lot' => $lot,
             'product' => $lot->product(),
-            'bids' => $lot->bids()->sortByDesc('created_at')]);
+            'bids' => $lot->bids()->sortByDesc('created_at'),
+        ]);
     }
 
     public function add(Request $request)

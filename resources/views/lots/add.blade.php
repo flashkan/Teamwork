@@ -28,10 +28,10 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="lot_buyback_price">Buyback price:</label>
-                <input name="buyback_price" type="number" step="0.01" class="form-control" id="lot_buyback_price"
-                       placeholder="Buyback price" value="{{ old('buyback_price') ?: $lot->buyback_price }}">
-                @error('buyback_price')
+                <label for="lot_buyout_price">Buyout price:</label>
+                <input name="buyout_price" type="number" step="0.01" class="form-control" id="lot_buyout_price"
+                       placeholder="Buyout price" value="{{ old('buyout_price') ?: $lot->buyout_price }}">
+                @error('buyout_price')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>

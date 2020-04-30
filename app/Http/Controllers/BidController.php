@@ -46,8 +46,13 @@ class BidController extends Controller
         $bidsLot->current_rate = $request->input('amount');
         $bidsLot->current_buyer_id = Auth::id();
 
+        if ($bidsLot->current_rate >= $bidsLot->buyout_price) {
+            $bidsLot->end_time = now();
+        }
+
         $updated = $bidsLot->update();
         $saved = $newBid->save();
+
         if ($updated && $saved) {
             return redirect()
                 ->back()
