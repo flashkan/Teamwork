@@ -22,7 +22,6 @@ window.Vue = require('vue');
 import { Datetime } from 'vue-datetime';
 import 'vue-datetime/dist/vue-datetime.css'
 
-
 Vue.component('datetime', Datetime);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('lot-timer-component', require('./components/LotTimerComponent.vue').default);
