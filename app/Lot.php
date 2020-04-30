@@ -17,7 +17,7 @@ class Lot extends Model
             'product_id' => ["required", "exists:{$tableNameProduct},id", new OneOpenLot()],
             'seller_id' => "required|exists:{$tableNameUser},id",
             'start_price' => 'required|numeric',
-            'buyback_price' => 'numeric|nullable',
+            'buyout_price' => 'numeric|nullable',
             'end_time' => "required|date|after:now",
         ];
     }
@@ -28,7 +28,7 @@ class Lot extends Model
      * @var array
      */
     protected $fillable = [
-        'product_id', 'seller_id', 'start_price', 'buyback_price', 'end_time',
+        'product_id', 'seller_id', 'start_price', 'buyout_price', 'end_time',
     ];
 
     public function product()

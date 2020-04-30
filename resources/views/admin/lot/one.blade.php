@@ -9,8 +9,8 @@
             <h3 class="card-text"><strong>Product:</strong> {{ $product->name }}</h3>
             <h5 class="card-text"><strong>Description:</strong> {{ $product->description }}</h5>
             <h5 class="card-title"><strong>Start price:</strong> {{ $lot->start_price }}</h5>
-            @if(isset($lot->buyback_price))
-                <p class="card-title"><strong>Buyback price:</strong> {{ $lot->buyback_price }}</p>
+            @if(isset($lot->buyout_price))
+                <p class="card-title"><strong>Buyout price:</strong> {{ $lot->buyout_price }}</p>
             @endif
             <p class="card-text"><strong>Seller:</strong> {{ $lot->seller()->name }}</p>
             <p class="card-text"><strong>End date:</strong> {{ $lot->end_time }}</p>

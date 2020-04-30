@@ -11,8 +11,8 @@
 ? Storage::url($lot->product()->img_url) : Storage::url('placeholder.jpg') }}" alt="img_product">
                         <h4 class="card-text"><strong>Product:</strong> {{ $lot->product()->name }}</h4>
                         <h5 class="card-title"><strong>Start price:</strong> {{ $lot->start_price }}</h5>
-                        @if(isset($lot->buyback_price))
-                            <p class="card-title"><strong>Buyback price:</strong> {{ $lot->buyback_price }}</p>
+                        @if(isset($lot->buyout_price))
+                            <p class="card-title"><strong>Buyout price:</strong> {{ $lot->buyout_price }}</p>
                         @endif
                     </div>
                     <lots-timer-component :lot="{{$lot}}" :url="'{{ route('lot.one', $lot) }}'"></lots-timer-component>

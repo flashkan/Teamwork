@@ -34,7 +34,7 @@ class LotsSeeder extends Seeder
                 'product_id' => $productId,
                 'seller_id' => $sellerId,
                 'start_price' => $faker->randomFloat(2, 1000, 5000),
-                'buyback_price' => $faker->randomFloat(2, 50000, 100000),
+                'buyout_price' => $faker->randomFloat(2, 50000, 100000),
                 'end_time' => $faker->dateTimeBetween(
                     $startDate = '3 hour',
                     $endDate = '5 days',

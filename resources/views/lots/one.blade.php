@@ -9,8 +9,8 @@
             <h3 class="card-text"><strong>Product:</strong> {{ $product->name }}</h3>
             <h5 class="card-text"><strong>Description:</strong> {{ $product->description }}</h5>
             <h5 class="card-title"><strong>Start price:</strong> {{ $lot->start_price }}</h5>
-            @if(isset($lot->buyback_price))
-                <p class="card-title"><strong>Buyback price:</strong> {{ $lot->buyback_price }}</p>
+            @if(isset($lot->buyout_price))
+                <p class="card-title"><strong>Buyout price:</strong> {{ $lot->buyout_price }}</p>
             @endif
             <p class="card-text"><strong>Seller:</strong> {{ $lot->seller()->name }}</p>
             <p class="card-text"><strong>End date:</strong> {{ $lot->end_time }}</p>
@@ -27,12 +27,14 @@
             @endauth
         </div>
 
+        <br>
+        
         <h2>Bids</h2>
-        <div class="w-25 p-3">
+        <div class="w-30 p-3">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">User ID</th>
+                    <th scope="col">Bidder</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Created at</th>
                 </tr>
@@ -40,7 +42,7 @@
                 <tbody>
                 @foreach ($bids as $bid)
                     <tr>
-                        <td>{{ $bid->user_id }}</td>
+                        <td>{{ $bid->bidder()->name }}</td>
                         <td>{{ $bid->amount }}</td>
                         <td>{{ $bid->created_at }}</td>
                     </tr>
