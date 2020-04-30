@@ -11,7 +11,17 @@ class LotController extends Controller
 {
     public function all()
     {
-        $openLots = Lot::query()->where('closed', 0)->paginate(9);
+        if (Auth::check()) {
+            $openLots = Lot::query()
+                ->where('closed', 0)
+                ->where('seller_id', '!=', Auth::id())
+                ->paginate(9);
+        } else {
+            $openLots = Lot::query()
+                ->where('closed', 0)
+                ->paginate(9);
+        }
+                
         return view('lots.all', ['lots' => $openLots]);
     }
 
@@ -35,7 +45,10 @@ class LotController extends Controller
                 ->route('lot.one', ['lot' => $lot])
                 ->with('success', 'Lot successfully created');
         }
-        return view('lots.add', ['lot' => $lot, 'products' => Auth::user()->unsoldProducts()]);
+        return view('lots.add', [
+            'lot' => $lot,
+            'products' => Auth::user()->unsoldProducts()
+        ]);
     }
 
     public function update(Request $request, Lot $lot)
@@ -50,7 +63,10 @@ class LotController extends Controller
                 ->with('success', 'Lot successfully updated');
         }
         $lot->end_time = date('Y-m-d\TH:i', strtotime($lot->end_time));
-        return view('lots.add', ['lot' => $lot, 'products' => Auth::user()->products()]);
+        return view('lots.add', [
+            'lot' => $lot,
+            'products' => Auth::user()->products()
+        ]);
     }
 
     public function delete(Lot $lot)
