@@ -28,7 +28,7 @@
         </div>
 
         <br>
-        
+
         <h2>Bids</h2>
         <div class="w-30 p-3">
             <table class="table table-striped">
@@ -37,6 +37,7 @@
                     <th scope="col">Bidder</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Created at</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,6 +46,16 @@
                         <td>{{ $bid->bidder()->name }}</td>
                         <td>{{ $bid->amount }}</td>
                         <td>{{ $bid->created_at }}</td>
+                        <td>
+                            @if(Auth::id() === $bid->user_id)
+                                <form method="post" action="{{ action('BidController@delete') }}">
+                                    @csrf
+                                    <input type="hidden" value="{{$bid->id}}" name="bid_id">
+                                    <input type="hidden" value="{{$lot->id}}" name="lot_id">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

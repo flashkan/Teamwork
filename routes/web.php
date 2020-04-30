@@ -71,6 +71,7 @@ Route::group(
         'middleware' => 'auth',
     ], function () {
     Route::post('/add', 'BidController@add')->name('add');
+    Route::post('/delete', 'BidController@delete')->name('delete');
 }
 );
 

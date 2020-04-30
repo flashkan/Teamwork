@@ -20,7 +20,7 @@ class LotController extends Controller
                 ->where('closed', 0)
                 ->paginate(9);
         }
-                
+
         return view('lots.all', ['lots' => $openLots]);
     }
 
@@ -73,9 +73,19 @@ class LotController extends Controller
 
     public function delete(Lot $lot)
     {
-        $lot->delete();
-        return redirect()
-            ->route('lot.my')
-            ->with('success', 'Lot successfully deleted');
+        $bidsLot = $lot->bids();
+        $bidsLot->each(function ($elem) {
+            $elem->delete();
+        });
+
+        if ($lot->delete()) {
+            return redirect()
+                ->route('account.index')
+                ->with('success', 'Lot successfully deleted');
+        } else {
+            return redirect()
+                ->route('account.index')
+                ->with('failure', 'Something went wrong');
+        }
     }
 }

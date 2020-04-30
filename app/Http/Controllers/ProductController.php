@@ -54,7 +54,7 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()
-            ->route('product.my')
+            ->route('account.index')
             ->with('success', 'Product successfully deleted');
     }
 }
