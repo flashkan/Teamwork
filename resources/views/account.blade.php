@@ -81,20 +81,17 @@
             <h3>Won lots</h3>
             <div class="row m-1">
                 @forelse ($wonLots as $lot)
-                                        <div class="card col-4 p-1" style="width: 18rem;">
-                                            <div class="card-body">
-                                                <img class="card-img p-0 my-2" src="{{ $lot->product()->img_url
+                    <div class="card col-4 p-1" style="width: 18rem;">
+                        <div class="card-body">
+                            <img class="card-img p-0 my-2" src="{{ $lot->product()->img_url
                     ? Storage::url($lot->product()->img_url) : Storage::url('placeholder.jpg') }}" alt="img_product">
-                                                <h4 class="card-text"><strong>Product:</strong> {{ $lot->product()->name }}</h4>
-                                                <h5 class="card-title"><strong>Start price:</strong> {{ $lot->start_price }}</h5>
-                                                @if(isset($lot->buyback_price))
-                                                    <p class="card-title"><strong>Buyback price:</strong> {{ $lot->buyback_price }}</p>
-                                                @endif
-                                                <h3>Your bid: {{ $lot->current_rate }}</h3>
-                                            </div>
-                                            <lots-timer-component :lot="{{$lot}}" :user_id="{{ $user->id }}"
-                                                                  :url="'{{ route('lot.one', $lot) }}'"></lots-timer-component>
-                                        </div>
+                            <h4 class="card-text"><strong>Product:</strong> {{ $lot->product()->name }}</h4>
+                            <h5 class="card-text"><strong>Description:</strong> {{ $lot->product()->description }}</h5>
+                            <h3>Your bid: {{ $lot->current_rate }}</h3>
+                        </div>
+                        <lots-timer-component :lot="{{$lot}}" :user_id="{{ $user->id }}"
+                                              :url="'{{ route('lot.one', $lot) }}'"></lots-timer-component>
+                    </div>
                 @empty
                     <h2 class="text-center col-12">You don't have bids</h2>
                 @endforelse

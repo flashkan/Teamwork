@@ -51,8 +51,11 @@
             </div>
             <div class="form-group">
                 <label for="lot_end_time">End time:</label>
-                <input name="end_time" type="datetime-local" class="form-control" id="lot_end_time" required
-                       placeholder="end_time" value="{{ old('end_time') ?: $lot->end_time }}">
+                <datetime name="end_time" type="datetime" input-class="form-control" format="d.MM.y H:m"
+                          placeholder="End time" title="Enter end date and time"
+                          value="{{ old('end_time') ?: $lot->end_time }}" required></datetime>
+{{--                <input name="end_time" type="datetime-local" class="form-control" id="lot_end_time" required--}}
+{{--                       placeholder="end_time" value="{{ old('end_time') ?: $lot->end_time }}">--}}
                 @error('end_time')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

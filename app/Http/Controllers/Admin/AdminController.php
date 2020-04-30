@@ -141,6 +141,7 @@ class AdminController extends Controller
     {
         $lot = new Lot();
         if ($request->isMethod('post')) {
+            $request->merge(['end_time' => date('Y-m-d\TH:i', strtotime($request->end_time))]);
             $this->validate($request, Lot::rules());
             $lot->fill($request->all());
             $lot->save();
@@ -154,6 +155,7 @@ class AdminController extends Controller
     public function lotUpdate(Request $request, Lot $lot)
     {
         if ($request->isMethod('post')) {
+            $request->merge(['end_time' => date('Y-m-d\TH:i', strtotime($request->end_time))]);
             $this->validate($request, Lot::rules());
             $lot->fill($request->all());
             $lot->save();

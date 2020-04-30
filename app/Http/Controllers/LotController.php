@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Lot;
@@ -27,6 +26,7 @@ class LotController extends Controller
     {
         $lot = new Lot();
         if ($request->isMethod('post')) {
+            $request->merge(['end_time' => date('Y-m-d\TH:i', strtotime($request->end_time))]);
             $request->merge(['seller_id' => Auth::id()]);
             $this->validate($request, Lot::rules());
             $lot->fill($request->all());
@@ -41,6 +41,7 @@ class LotController extends Controller
     public function update(Request $request, Lot $lot)
     {
         if ($request->isMethod('post')) {
+            $request->merge(['end_time' => date('Y-m-d\TH:i', strtotime($request->end_time))]);
             $request->merge(['seller_id' => Auth::id()]);
             $this->validate($request, Lot::rules());
             $lot->fill($request->all());

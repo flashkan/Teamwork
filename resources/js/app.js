@@ -19,6 +19,11 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+import { Datetime } from 'vue-datetime';
+import 'vue-datetime/dist/vue-datetime.css'
+
+
+Vue.component('datetime', Datetime);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('lot-timer-component', require('./components/LotTimerComponent.vue').default);
 Vue.component('lots-timer-component', require('./components/LotsTimerComponent.vue').default);
