@@ -64,4 +64,16 @@ class Product extends Model
         $this->img_url = $path;
         $this->update();
     }
+
+    public static function checkOpenLot($product) {
+        $false = $product->ownerLots()->every(function ($elem) {
+            return $elem->closed === 1;
+        });
+
+        if (!$false) {
+            return redirect()
+                ->back()
+                ->with('failure', 'This product has an open lot');
+        }
+    }
 }
