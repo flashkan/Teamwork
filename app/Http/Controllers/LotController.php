@@ -20,7 +20,7 @@ class LotController extends Controller
                 ->where('closed', 0)
                 ->paginate(9);
         }
-                
+
         return view('lots.all', ['lots' => $openLots]);
     }
 
@@ -54,6 +54,12 @@ class LotController extends Controller
 
     public function update(Request $request, Lot $lot)
     {
+        if (isset($lot->current_buyer_id)) {
+            return redirect()
+                ->back()
+                ->with('failure', 'You have bets on this lot. You can only delete the lot.');
+        }
+
         if ($request->isMethod('post')) {
             $request->merge(['end_time' => date('Y-m-d\TH:i', strtotime($request->end_time))]);
             $request->merge(['seller_id' => Auth::id()]);
@@ -73,9 +79,18 @@ class LotController extends Controller
 
     public function delete(Lot $lot)
     {
-        $lot->delete();
+        $bidsLot = $lot->bids();
+        $bidsLot->each(function ($elem) {
+            $elem->delete();
+        });
+
+        if ($lot->delete()) {
+            return redirect()
+                ->route('account.index')
+                ->with('success', 'Lot successfully deleted');
+        }
         return redirect()
-            ->route('lot.my')
-            ->with('success', 'Lot successfully deleted');
+            ->route('account.index')
+            ->with('failure', 'Something went wrong');
     }
 }

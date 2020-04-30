@@ -98,6 +98,9 @@ class AdminController extends Controller
 
     public function productUpdate(Request $request, Product $product)
     {
+        $errors = Product::checkOpenLot($product);
+        if ($errors) return $errors;
+
         if ($request->isMethod('post')) {
             $this->validate($request, Product::rules());
             if ($request->img_del) {
@@ -117,6 +120,9 @@ class AdminController extends Controller
 
     public function productDelete(Product $product)
     {
+        $errors = Product::checkOpenLot($product);
+        if ($errors) return $errors;
+
         $product->delete();
         return redirect()
             ->route('admin.product.all')

@@ -32,6 +32,9 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $errors = Product::checkOpenLot($product);
+        if ($errors) return $errors;
+
         if ($request->isMethod('post')) {
             $request->merge(['owner_id' => $product->owner_id]);
             $this->validate($request, Product::rules());
@@ -52,9 +55,18 @@ class ProductController extends Controller
 
     public function delete(Product $product)
     {
-        $product->delete();
+        $errors = Product::checkOpenLot($product);
+        if ($errors) return $errors;
+
+        $product->is_delete = true;
+        if ($product->update()) {
+            return redirect()
+                ->route('account.index')
+                ->with('success', 'Product successfully deleted');
+        }
+
         return redirect()
-            ->route('product.my')
-            ->with('success', 'Product successfully deleted');
+            ->route('account.index')
+            ->with('failure', 'Something went wrong');
     }
 }
