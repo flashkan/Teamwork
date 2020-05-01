@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label for="lot_end_time">End time:</label>
-                <datetime name="end_time" type="datetime" input-class="form-control" format="d.MM.y H:m"
+                <datetime name="end_time" type="datetime" input-class="form-control" format="d.MM.y HH:mm"
                           placeholder="End time" title="Enter end date and time"
                           value="{{ old('end_time') ?: $lot->end_time }}" required></datetime>
                 @error('end_time')

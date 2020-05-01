@@ -3,10 +3,11 @@
 @section('admin.content')
     <div class="container">
         <a class="btn btn-outline-primary" href="{{back()->getTargetUrl()}}">&#9668 Back</a>
-        <div>
+        <div class="d-flex flex-column align-items-start">
             <img class="card-img col-4 p-0 my-2" src="{{ $product->img_url ? Storage::url($product->img_url)
             : Storage::url('placeholder.jpg') }}" alt="img_product">
-            <h3 class="card-text"><strong>Product:</strong> {{ $product->name }}</h3>
+            <a href="{{route('admin.product.one', ['product' => $product])}}" class="badge badge-light pl-0">
+                <h3 class="card-text"><strong>Product:</strong> {{ $product->name }}</h3></a>
             <h5 class="card-text"><strong>Description:</strong> {{ $product->description }}</h5>
             <h5 class="card-title"><strong>Start price:</strong> {{ $lot->start_price }}</h5>
             @if(isset($lot->buyout_price))
