@@ -6,7 +6,7 @@
         <div class="row m-1">
             @foreach ($products as $product)
                 <div class="card col-3 p-1" style="width: 18rem;">
-                    <img class="card-img p-0 my-2" src="{{ $product->img_url ? Storage::url($product->img_url)
+                    <img class="card-img p-0 my-2 products-in-admin" src="{{ $product->img_url ? Storage::url($product->img_url)
                         : Storage::url('placeholder.jpg') }}" alt="img_product">
                     <div class="card-body">
                         <h5 class="card-title"><strong>Name product:</strong> {{ $product->name }}</h5>

@@ -10900,3 +10900,16 @@ body,
   font-size: 40px;
 }
 
+.lot-in-all-lots,
+.products-in-account,
+.lots-in-account,
+.bids-in-account,
+.won-lots-in-account,
+.products-in-admin,
+.lots-in-admin {
+  height: 200px;
+  overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+

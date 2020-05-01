@@ -26,9 +26,15 @@ class HomeController extends Controller
     public function index()
     {
         $openLots = Lot::query()->where('closed', 0)->get();
+
+        $lotsFirst = $openLots->random(3);
+        $lotsSecond = $openLots
+            ->whereNotInStrict('id', $lotsFirst->pluck('id'))
+            ->random(3);
+
         return view('home', [
-            'lotsFirst' => $openLots->random(3),
-            'lotsSecond' => $openLots->random(3),
+            'lotsFirst' => $lotsFirst,
+            'lotsSecond' => $lotsSecond,
         ]);
     }
 }
