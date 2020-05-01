@@ -56,7 +56,7 @@ class LotController extends Controller
     {
         if (isset($lot->current_buyer_id)) {
             return redirect()
-                ->back()
+                ->route('lot.one', ['lot' => $lot])
                 ->with('failure', 'You have bets on this lot. You can only delete the lot.');
         }
 

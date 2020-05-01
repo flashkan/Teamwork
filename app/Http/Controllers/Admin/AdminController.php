@@ -60,7 +60,7 @@ class AdminController extends Controller
     {
         if ($user->id === Auth::id()) {
             return redirect()
-                ->back()
+                ->route('admin.user.one', ['user' => $user])
                 ->with('failure', 'You can\'t delete yourself.');
         }
 
@@ -122,7 +122,7 @@ class AdminController extends Controller
     {
         if ($product->ownerLots()->count()) {
             return redirect()
-                ->back()
+                ->route('admin.product.one', ['product' => $product])
                 ->with('failure', 'This product has an lot');
         }
 
@@ -196,7 +196,7 @@ class AdminController extends Controller
     {
         if (isset($lot->current_buyer_id)) {
             return redirect()
-                ->back()
+                ->route('admin.lot.one', ['lot' => $lot])
                 ->with('failure', 'This lot hes a bets. You can only delete the lot.');
         }
 
