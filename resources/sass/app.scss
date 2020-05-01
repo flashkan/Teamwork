@@ -6,3 +6,19 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+html, body, #app {
+    height: 100%;
+}
+
+.slider-wrap {
+    height: 400px;
+}
+
+.slider-img {
+    overflow: hidden;
+}
+
+.social {
+    font-size: 40px;
+}

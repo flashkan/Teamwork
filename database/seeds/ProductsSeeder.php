@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Product;
+use \Illuminate\Support\Facades\DB;
 
 class ProductsSeeder extends Seeder
 {
@@ -35,9 +36,8 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('products')
+        DB::table('products')
             ->insert($this->getData());
-        // $this->addImages();
     }
 
     public function getData()
@@ -46,25 +46,16 @@ class ProductsSeeder extends Seeder
         $faker = \Faker\Factory::create('ru_RU');
         $numOfUsers = App\User::count();
 
-        for($i = 1; $i <= $numOfUsers * 2; $i++) {
+        for ($i = 1; $i <= $numOfUsers * 2; $i++) {
             $data[] = [
                 //'name' => $faker->realText(rand(10, 15)),
                 //'description' => $faker->realText(rand(20, 40)),
                 'name' => $this->dataForSeeder[$i - 1][0],
                 'description' => $this->dataForSeeder[$i - 1][1],
                 'owner_id' => $faker->numberBetween(1, $numOfUsers),
+                'img_url' => Product::addImageWithLink($this->dataForSeeder[$i - 1][2], $this->dataForSeeder[$i - 1][0])
             ];
         }
         return $data;
-    }
-
-    public function addImages()
-    {
-        $i = 0;
-        Product::all()->each(function ($item) use ($i) {
-            dump($this->dataForSeeder[$i][2]);
-            $item->addImageWithLink($this->dataForSeeder[$i][2]);
-            $i++;
-        });
     }
 }
