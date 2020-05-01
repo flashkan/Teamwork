@@ -97,6 +97,8 @@ Route::group(
     Route::match(['get', 'post'], '/product/update/{product}', 'AdminController@productUpdate')
         ->name('product.update');
     Route::get('/product/delete/{product}', 'AdminController@productDelete')->name('product.delete');
+    Route::get('/product/hide/{product}', 'AdminController@productHide')->name('product.hide');
+    Route::get('/product/show/{product}', 'AdminController@productShow')->name('product.show');
 
     /**Lots*/
     Route::get('/lot/all', 'AdminController@lotAll')->name('lot.all');

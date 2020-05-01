@@ -13,7 +13,6 @@ class BidController extends Controller
     {
         $bidsLot = Lot::find($request->input('lot_id'));
 
-
         $errors = $this->validateBids($request, $bidsLot);
         if ($errors) return $errors;
 
@@ -26,14 +25,14 @@ class BidController extends Controller
             $bidsLot->end_time = now();
         }
 
-        return $this->finishCheckBid($bidsLot->update(), $newBid->save());
+        return $this->finishCheckBid($bidsLot->update(), $newBid->save(), $bidsLot);
     }
 
     private function validateBids(Request $request, $bidsLot)
     {
         if ((int)$bidsLot->seller_id === (int)Auth::id()) {
             return redirect()
-                ->back()
+                ->route('lot.one', ['lot' => $bidsLot])
                 ->with('failure', 'Seller can\'t bid');
         }
 
@@ -45,27 +44,27 @@ class BidController extends Controller
         if (isset($highestBid)) {
             if ($highestBid->amount >= $request->input('amount')) {
                 return redirect()
-                    ->back()
+                    ->route('lot.one', ['lot' => $bidsLot])
                     ->with('failure', 'Bid to low');
             }
         }
 
         if (empty($bidsLot->current_buyer_id) && $bidsLot->start_price > $request->input('amount')) {
             return redirect()
-                ->back()
+                ->route('lot.one', ['lot' => $bidsLot])
                 ->with('failure', 'Bid can\'t be lower than starting price');
         }
     }
 
-    private function finishCheckBid($updated, $saved)
+    private function finishCheckBid($updated, $saved, $bidsLot)
     {
         if ($updated && $saved) {
             return redirect()
-                ->back()
+                ->route('lot.one', ['lot' => $bidsLot])
                 ->with('success', 'Bid successfully created');
         } else {
             return redirect()
-                ->back()
+                ->route('lot.one', ['lot' => $bidsLot])
                 ->with('failure', 'Something went wrong');
         }
     }
@@ -89,7 +88,7 @@ class BidController extends Controller
         $lot->update();
 
         return redirect()
-            ->back()
+            ->route('lot.one', ['lot' => $lot])
             ->with('success', 'Bid successfully deleted');
     }
 }

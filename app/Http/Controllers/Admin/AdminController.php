@@ -60,7 +60,7 @@ class AdminController extends Controller
     {
         if ($user->id === Auth::id()) {
             return redirect()
-                ->back()
+                ->route('admin.user.one', ['user' => $user])
                 ->with('failure', 'You can\'t delete yourself.');
         }
 
@@ -120,13 +120,47 @@ class AdminController extends Controller
 
     public function productDelete(Product $product)
     {
-        $errors = Product::checkOpenLot($product);
-        if ($errors) return $errors;
+        if ($product->ownerLots()->count()) {
+            return redirect()
+                ->route('admin.product.one', ['product' => $product])
+                ->with('failure', 'This product has an lot');
+        }
 
         $product->delete();
         return redirect()
             ->route('admin.product.all')
             ->with('success', 'Product successfully deleted');
+    }
+
+    public function productHide(Product $product)
+    {
+        $errors = Product::checkOpenLot($product);
+        if ($errors) return $errors;
+
+        $product->is_delete = true;
+        if ($product->update()) {
+            return redirect()
+                ->route('admin.product.one', ['product' => $product])
+                ->with('success', 'Product successfully deleted');
+        }
+
+        return redirect()
+            ->route('admin.product.all')
+            ->with('failure', 'Something went wrong');
+    }
+
+    public function productShow(Product $product)
+    {
+        $product->is_delete = false;
+        if ($product->update()) {
+            return redirect()
+                ->route('admin.product.one', ['product' => $product])
+                ->with('success', 'Product successfully restored');
+        }
+
+        return redirect()
+            ->route('admin.product.all')
+            ->with('failure', 'Something went wrong');
     }
 
     /******************************Lots******************************/
@@ -160,6 +194,12 @@ class AdminController extends Controller
 
     public function lotUpdate(Request $request, Lot $lot)
     {
+        if (isset($lot->current_buyer_id)) {
+            return redirect()
+                ->route('admin.lot.one', ['lot' => $lot])
+                ->with('failure', 'This lot hes a bets. You can only delete the lot.');
+        }
+
         if ($request->isMethod('post')) {
             $request->merge(['end_time' => date('Y-m-d\TH:i', strtotime($request->end_time))]);
             $this->validate($request, Lot::rules());
@@ -175,9 +215,18 @@ class AdminController extends Controller
 
     public function lotDelete(Lot $lot)
     {
-        $lot->delete();
+        $bidsLot = $lot->bids();
+        $bidsLot->each(function ($elem) {
+            $elem->delete();
+        });
+
+        if ($lot->delete()) {
+            return redirect()
+                ->route('admin.lot.all')
+                ->with('success', 'Lot successfully deleted');
+        }
         return redirect()
             ->route('admin.lot.all')
-            ->with('success', 'Lot successfully deleted');
+            ->with('failure', 'Something went wrong');
     }
 }
