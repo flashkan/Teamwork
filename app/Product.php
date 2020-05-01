@@ -57,12 +57,11 @@ class Product extends Model
         $request->merge(['img_url' => $pathToImg]);
     }
 
-    public function addImageWithLink(String $link)
+    public static function addImageWithLink(String $link, $name)
     {
         $contents = file_get_contents($link);
-        $path = Storage::putFile('uploads', new File($link));
-        $this->img_url = $path;
-        $this->update();
+        $path = "uploads/$name" . substr($link, strrpos($link, '.'));
+        if (Storage::disk('public')->put($path , $contents)) return $path;
     }
 
     public static function checkOpenLot($product) {
