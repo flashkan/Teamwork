@@ -24,7 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "luxon": "^1.23.0",
+        "luxon": "^1.28.1",
         "vue-datetime": "^1.0.0-beta.11",
         "weekstart": "^1.0.1"
     }
